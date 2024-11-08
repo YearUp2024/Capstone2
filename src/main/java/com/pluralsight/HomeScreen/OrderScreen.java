@@ -1,16 +1,18 @@
 package com.pluralsight.HomeScreen;
 
 import com.pluralsight.Console;
+import com.pluralsight.OrderScreen.SandwichInterface;
 
 public class OrderScreen {
+    SandwichInterface sandwichInterface = new SandwichInterface();
     public void userOrder(){
         int order;
 
         do{
             System.out.println("Please select from options: ");
-            System.out.println("[1] - Add Sandwich");
-            System.out.println("[2] - Add Drink");
-            System.out.println("[3] - Add Chips");
+            System.out.println("[1] - Sandwich");
+            System.out.println("[2] - Drink");
+            System.out.println("[3] - Chips");
             System.out.println("[4] - Checkout");
             System.out.println("[5] - Cancel Order");
 
@@ -18,7 +20,7 @@ public class OrderScreen {
             System.out.println();
             switch(order){
                 case 1:
-                    System.out.println("Add Sandwich");
+                    sandwichInterface.orderSandwich();
                     System.out.println();
                     break;
                 case 2:
