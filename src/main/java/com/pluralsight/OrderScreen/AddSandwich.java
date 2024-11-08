@@ -3,29 +3,21 @@ package com.pluralsight.OrderScreen;
 import java.util.List;
 
 public class AddSandwich extends MenuItem{
-    private String breadType;
     private int size;
+    private String breadType;
     private boolean toasted;
     private double cost;
     private List<String> regularToppings;
     private List<String> premiumToppings;
 
-    public AddSandwich(String name, double price, int quantity, String breadType, int size, boolean toasted, double cost, List<String> regularToppings, List<String> premiumToppings) {
+    public AddSandwich(String name, double price, int quantity, int size, String breadType, boolean toasted, double cost, List<String> regularToppings, List<String> premiumToppings) {
         super(name, price, quantity);
-        this.breadType = breadType;
         this.size = size;
+        this.breadType = breadType;
         this.toasted = toasted;
         this.cost = cost;
         this.regularToppings = regularToppings;
         this.premiumToppings = premiumToppings;
-    }
-
-    public String getBreadType() {
-        return breadType;
-    }
-
-    public void setBreadType(String breadType) {
-        this.breadType = breadType;
     }
 
     public int getSize() {
@@ -36,16 +28,20 @@ public class AddSandwich extends MenuItem{
         this.size = size;
     }
 
+    public String getBreadType() {
+        return breadType;
+    }
+
+    public void setBreadType(String breadType) {
+        this.breadType = breadType;
+    }
+
     public boolean isToasted() {
         return toasted;
     }
 
     public void setToasted(boolean toasted) {
         this.toasted = toasted;
-    }
-
-    public double getCost() {
-        return cost;
     }
 
     public List<String> getRegularToppings() {
@@ -63,6 +59,12 @@ public class AddSandwich extends MenuItem{
     public void setPremiumToppings(List<String> premiumToppings) {
         this.premiumToppings = premiumToppings;
     }
+
+    public double getCost() {
+        return cost;
+    }
+
+    public void setCost(double cost) {
+        this.cost = cost;
+    }
 }
-
-
