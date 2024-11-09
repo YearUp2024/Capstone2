@@ -2,16 +2,16 @@ package com.pluralsight.HomeScreen;
 
 import com.pluralsight.Console;
 import com.pluralsight.OrderScreen.SandwichInterface;
-import com.pluralsight.Toppings.TopingsOptions;
-import java.util.Set;
+import com.pluralsight.Toppings.ToppingsOptions;
+import java.util.List;
 
 public class OrderScreen {
     SandwichInterface sandwichInterface = new SandwichInterface();
-    TopingsOptions topingsOptions = new TopingsOptions();
+    ToppingsOptions toppingsOptions = new ToppingsOptions();
 
     public void userOrder(){
         System.out.println("Please select from options: ");
-        Set<String> menuOptions = topingsOptions.mainMenue();
+        List<String> menuOptions = toppingsOptions.mainMenue();
 
         String order;
         do{
@@ -19,7 +19,7 @@ public class OrderScreen {
 
             if(!menuOptions.contains(order)){
                 System.out.println("\nPlease Choose from the options.");
-                topingsOptions.mainMenue();
+                toppingsOptions.mainMenue();
             }else if(menuOptions.contains(order)){
                 switch(order){
                     case "sandwich":

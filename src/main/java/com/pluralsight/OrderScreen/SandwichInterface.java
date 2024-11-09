@@ -1,11 +1,8 @@
 package com.pluralsight.OrderScreen;
 
 import com.pluralsight.Console;
-import com.pluralsight.Toppings.TopingsOptions;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import com.pluralsight.Toppings.ToppingsOptions;
+import java.util.*;
 
 public class SandwichInterface {
     private static final double baseCost4 = 5.50;
@@ -24,7 +21,7 @@ public class SandwichInterface {
     private static final double extraCheeseCost8 = 0.60;
     private static final double extraCheeseCost12 = 0.90;
 
-    TopingsOptions topingsOptions = new TopingsOptions();
+    ToppingsOptions toppingsOptions = new ToppingsOptions();
 
     public void orderSandwich(){
         int sandwichSize = promptForSandwichSize();
@@ -62,7 +59,7 @@ public class SandwichInterface {
         int sandwichSize = 0;
         do{
             System.out.println("What size Sandwich do you want?");
-            topingsOptions.sandwichSizeType();
+            toppingsOptions.sandwichSizeType();
             try{
                 sandwichSize = Console.PromptForInt("Enter your choice: ");
                 if(sandwichSize != 4 && sandwichSize != 8 && sandwichSize != 12){
@@ -77,14 +74,14 @@ public class SandwichInterface {
 
     public String promptForBreadType(){
         System.out.println("What type of bread do you want?");
-        Set<String> breadType = topingsOptions.breadTypes();
+        List<String> breadType = toppingsOptions.breadTypes();
 
         String userChoice;
         do{
             userChoice = Console.PromptForString("Enter you Bread Type: ").toLowerCase();
             if(!breadType.contains(userChoice)){
                 System.out.println("\nPlease Choose from the options.");
-                topingsOptions.breadTypes();
+                toppingsOptions.breadTypes();
             }
         }while(!breadType.contains(userChoice));
         return userChoice;
@@ -93,23 +90,41 @@ public class SandwichInterface {
     public List<String> promptForToppings(String type){
         List<String> toppings = new ArrayList<>();
 
-        String moreOptions;
+        boolean moreOptions;
         do{
+            List<String> validToopings = new ArrayList<>();
+
             if(type.equalsIgnoreCase("regular")){
-                System.out.println("Which toppings do you want?" );
-                topingsOptions.regularToppingsType();
+                System.out.println("Please choose Toppings from the options:");
+                validToopings = new ArrayList<>(toppingsOptions.regularToppingsType());
             }else if(type.equalsIgnoreCase("meat")){
-                System.out.println("What Meat toppings do you want?" );
-                topingsOptions.meatTypes();
+                System.out.println("Please choose from the Meat toppings options:");
+                validToopings = new ArrayList<>(toppingsOptions.meatTypes());
             }else if(type.equalsIgnoreCase("cheese")){
-                System.out.println("What Cheese toppings do you want?" );
-                topingsOptions.cheeseTypes();
+                System.out.println("Please choose from the Choose toppings options:");
+                validToopings = new ArrayList<>(toppingsOptions.cheeseTypes());
             }
 
-            List<String> newToopings = Arrays.asList(Console.PromptForString("Enter your Toppings: "));
-            toppings.addAll(newToopings);
-            moreOptions = Console.PromptForString("Do you want to add more toppings? ");
-        }while(!moreOptions.equalsIgnoreCase("NO"));
+            for(String option : validToopings){
+                System.out.println(option);
+            }
+
+            boolean validInput = false;
+            while(!validInput){
+                String topping = Console.PromptForString("Enter your Toppings: ").toLowerCase();
+
+                if(validToopings.contains(topping)){
+                    toppings.add(topping);
+                    validInput = true;
+                }else{
+                    System.out.println("\nPlease chose Toppings from the options.");
+                    for(String option : validToopings){
+                        System.out.println(option);
+                    }
+                }
+            }
+            moreOptions = Console.PromptForYesNo("Do you want add more toppings? ");
+        }while(moreOptions);
         return toppings;
     }
 
