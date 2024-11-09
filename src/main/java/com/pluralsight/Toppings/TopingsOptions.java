@@ -4,6 +4,23 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class TopingsOptions {
+    public Set<String> mainMenue(){
+        Set<String> menuOptions = new HashSet<>();
+        menuOptions.add("sandwich");
+        menuOptions.add("drink");
+        menuOptions.add("chips");
+        menuOptions.add("checkout");
+        menuOptions.add("cancel order");
+
+        System.out.println("Sandwich");
+        System.out.println("Drink");
+        System.out.println("Chips");
+        System.out.println("Checkout");
+        System.out.println("Cancel Order");
+
+        return menuOptions;
+    }
+
     public void sandwichSizeType(){
         System.out.println("[4] - 4 Inch");
         System.out.println("[8] - 8 Inch");
@@ -17,9 +34,11 @@ public class TopingsOptions {
         breadTypes.add("rye");
         breadTypes.add("wrap");
 
-        for(String type : breadTypes){
-            System.out.println(type);
-        }
+        System.out.println("White");
+        System.out.println("Wheat");
+        System.out.println("Rye");
+        System.out.println("Wrap");
+
         return breadTypes;
     }
 

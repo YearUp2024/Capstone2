@@ -2,43 +2,51 @@ package com.pluralsight.HomeScreen;
 
 import com.pluralsight.Console;
 import com.pluralsight.OrderScreen.SandwichInterface;
+import com.pluralsight.Toppings.TopingsOptions;
+import java.util.Set;
 
 public class OrderScreen {
     SandwichInterface sandwichInterface = new SandwichInterface();
+    TopingsOptions topingsOptions = new TopingsOptions();
+
     public void userOrder(){
-        int order;
+        System.out.println("Please select from options: ");
+        Set<String> menuOptions = topingsOptions.mainMenue();
+
+        String order;
         do{
-            System.out.println("Please select from options: ");
-            System.out.println("[1] - Sandwich");
-            System.out.println("[2] - Drink");
-            System.out.println("[3] - Chips");
-            System.out.println("[4] - Checkout");
-            System.out.println("[5] - Cancel Order");
+            order = Console.PromptForString("Enter your choice: ").toLowerCase();
 
-            order = Console.PromptForInt("Enter your choice: ");
-            System.out.println();
-
-            switch(order){
-                case 1:
-                    sandwichInterface.orderSandwich();
-                    System.out.println();
-                    break;
-                case 2:
-                    System.out.println("Add Drink");
-                    System.out.println();
-                    break;
-                case 3:
-                    System.out.println("Add Chips");
-                    System.out.println();
-                    break;
-                case 4:
-                    System.out.println("Checkout");
-                    System.out.println();
-                    break;
-                case 5:
-                    System.out.println("Your order is Called");
-                    break;
+            if(!menuOptions.contains(order)){
+                System.out.println("\nPlease Choose from the options.");
+                topingsOptions.mainMenue();
+            }else if(menuOptions.contains(order)){
+                switch(order){
+                    case "sandwich":
+                        System.out.println();
+                        sandwichInterface.orderSandwich();
+                        System.out.println();
+                        break;
+                    case "drink":
+                        System.out.println("Add Drink");
+                        System.out.println();
+                        break;
+                    case "chips":
+                        System.out.println("Add Chips");
+                        System.out.println();
+                        break;
+                    case "checkout":
+                        System.out.println("Checkout");
+                        System.out.println();
+                        break;
+                    case "Cancel Order":
+                        System.out.println("Your order is Called");
+                        break;
+                    default:
+                        System.out.println("Your choice is incorrect.");
+                        break;
+                }
             }
-        }while(order != 5);
+        }while(!order.equalsIgnoreCase("cancel order"));
     }
 }
