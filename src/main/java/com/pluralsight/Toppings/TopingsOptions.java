@@ -12,10 +12,10 @@ public class TopingsOptions {
 
     public Set<String> breadTypes(){
         Set<String> breadTypes = new HashSet<>();
-        breadTypes.add("White");
-        breadTypes.add("Wheat");
-        breadTypes.add("Rye");
-        breadTypes.add("Wrap");
+        breadTypes.add("white");
+        breadTypes.add("wheat");
+        breadTypes.add("rye");
+        breadTypes.add("wrap");
 
         for(String type : breadTypes){
             System.out.println(type);

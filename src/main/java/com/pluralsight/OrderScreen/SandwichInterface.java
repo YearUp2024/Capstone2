@@ -79,9 +79,9 @@ public class SandwichInterface {
         System.out.println("What type of bread do you want?");
         Set<String> breadType = topingsOptions.breadTypes();
 
-        String userChoice = "";
+        String userChoice;
         do{
-            userChoice = Console.PromptForString("Enter you Bread Type: ");
+            userChoice = Console.PromptForString("Enter you Bread Type: ").toLowerCase();
             if(!breadType.contains(userChoice)){
                 System.out.println("\nPlease Choose from the options.");
                 topingsOptions.breadTypes();
