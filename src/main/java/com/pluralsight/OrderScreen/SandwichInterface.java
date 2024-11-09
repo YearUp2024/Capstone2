@@ -5,6 +5,7 @@ import com.pluralsight.Toppings.TopingsOptions;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 public class SandwichInterface {
     private static final double baseCost4 = 5.50;
@@ -76,8 +77,17 @@ public class SandwichInterface {
 
     public String promptForBreadType(){
         System.out.println("What type of bread do you want?");
-        topingsOptions.breadTypes();
-        return Console.PromptForString("Enter Bread type: ");
+        Set<String> breadType = topingsOptions.breadTypes();
+
+        String userChoice = "";
+        do{
+            userChoice = Console.PromptForString("Enter you Bread Type: ");
+            if(!breadType.contains(userChoice)){
+                System.out.println("\nPlease Choose from the options.");
+                topingsOptions.breadTypes();
+            }
+        }while(!breadType.contains(userChoice));
+        return userChoice;
     }
 
     public List<String> promptForToppings(String type){

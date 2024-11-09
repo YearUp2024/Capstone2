@@ -1,5 +1,8 @@
 package com.pluralsight.Toppings;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class TopingsOptions {
     public void sandwichSizeType(){
         System.out.println("[4] - 4 Inch");
@@ -7,11 +10,17 @@ public class TopingsOptions {
         System.out.println("[12] - 12 Inch");
     }
 
-    public void breadTypes(){
-        System.out.println("White");
-        System.out.println("Wheat");
-        System.out.println("Rye");
-        System.out.println("Wrap");
+    public Set<String> breadTypes(){
+        Set<String> breadTypes = new HashSet<>();
+        breadTypes.add("White");
+        breadTypes.add("Wheat");
+        breadTypes.add("Rye");
+        breadTypes.add("Wrap");
+
+        for(String type : breadTypes){
+            System.out.println(type);
+        }
+        return breadTypes;
     }
 
     public void meatTypes(){
