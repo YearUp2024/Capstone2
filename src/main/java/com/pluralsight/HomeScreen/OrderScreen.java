@@ -7,7 +7,6 @@ public class OrderScreen {
     SandwichInterface sandwichInterface = new SandwichInterface();
     public void userOrder(){
         int order;
-
         do{
             System.out.println("Please select from options: ");
             System.out.println("[1] - Sandwich");
@@ -18,6 +17,7 @@ public class OrderScreen {
 
             order = Console.PromptForInt("Enter your choice: ");
             System.out.println();
+
             switch(order){
                 case 1:
                     sandwichInterface.orderSandwich();

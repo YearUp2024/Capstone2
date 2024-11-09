@@ -7,7 +7,7 @@ public class UserInterface {
     public void userChoice(){
         int choice;
         do{
-            System.out.println("Please Choose from he options: ");
+            System.out.println("Please Choose from the options: ");
             System.out.println("[1] New Order");
             System.out.println("[2] Exit");
 

@@ -28,9 +28,11 @@ public class SandwichInterface {
     public void orderSandwich(){
         int sandwichSize = promptForSandwichSize();
         System.out.println();
+
         String breadType = promptForBreadType();
         boolean toasted = Console.PromptForYesNo("Do you want your bread to be toasted: ");
         System.out.println();
+
         List<String> regularToppings = promptForToppings("regular");
         List<String> premiumToppings = new ArrayList<>();
 
@@ -56,9 +58,20 @@ public class SandwichInterface {
     }
 
     private int promptForSandwichSize() {
-        System.out.println("What size Sandwich do you want?");
-        topingsOptions.sandwichSizeType();
-        return Console.PromptForInt("Enter your choice: ");
+        int sandwichSize = 0;
+        do{
+            System.out.println("What size Sandwich do you want?");
+            topingsOptions.sandwichSizeType();
+            try{
+                sandwichSize = Console.PromptForInt("Enter your choice: ");
+                if(sandwichSize != 4 && sandwichSize != 8 && sandwichSize != 12){
+                    System.out.println("\nPlease enter a valid size: 4, 8, or 12.\n");
+                }
+            }catch(Exception e){
+                System.out.println("\nPlease enter a valid size: 4, 8, or 12.\n");
+            }
+        }while(sandwichSize != 4 && sandwichSize != 8 && sandwichSize != 12);
+        return sandwichSize;
     }
 
     public String promptForBreadType(){
