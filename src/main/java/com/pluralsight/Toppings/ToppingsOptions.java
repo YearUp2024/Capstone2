@@ -12,12 +12,6 @@ public class ToppingsOptions {
         menuOptions.add("checkout");
         menuOptions.add("cancel order");
 
-        System.out.println("Sandwich");
-        System.out.println("Drink");
-        System.out.println("Chips");
-        System.out.println("Checkout");
-        System.out.println("Cancel Order");
-
         return menuOptions;
     }
 

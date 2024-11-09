@@ -9,19 +9,25 @@ public class OrderScreen {
     SandwichInterface sandwichInterface = new SandwichInterface();
     ToppingsOptions toppingsOptions = new ToppingsOptions();
 
-    public void userOrder(){
-        System.out.println("Please select from options: ");
+    public void userOrder() {
         List<String> menuOptions = toppingsOptions.mainMenue();
+        System.out.println("Please select from options: ");
+
+        for(String option : menuOptions){
+            System.out.println(option);
+        }
 
         String order;
-        do{
+        do {
             order = Console.PromptForString("Enter your choice: ").toLowerCase();
 
-            if(!menuOptions.contains(order)){
-                System.out.println("\nPlease Choose from the options.");
-                toppingsOptions.mainMenue();
-            }else if(menuOptions.contains(order)){
-                switch(order){
+            if (!menuOptions.contains(order)) {
+                System.out.println("\nPlease choose from the options:");
+                for (String option : menuOptions) {
+                    System.out.println(option);
+                }
+            } else {
+                switch (order) {
                     case "sandwich":
                         System.out.println();
                         sandwichInterface.orderSandwich();
@@ -39,14 +45,14 @@ public class OrderScreen {
                         System.out.println("Checkout");
                         System.out.println();
                         break;
-                    case "Cancel Order":
-                        System.out.println("Your order is Called");
+                    case "cancel order":
+                        System.out.println("Your order is canceled.");
                         break;
                     default:
                         System.out.println("Your choice is incorrect.");
                         break;
                 }
             }
-        }while(!order.equalsIgnoreCase("cancel order"));
+        } while (!order.equalsIgnoreCase("cancel order"));
     }
 }
