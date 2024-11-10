@@ -11,25 +11,24 @@ public class OrderScreen {
 
     public void userOrder() {
         List<String> menuOptions = toppingsOptions.mainMenue();
-        System.out.println("Please select from options: ");
-
-        for(String option : menuOptions){
-            System.out.println(option);
-        }
+//        System.out.println("Please select from options: ");
+//
+//        for(String option : menuOptions){
+//            System.out.println(option);
+//        }
 
         String order;
         do {
+            System.out.println("Please select from options: ");
+            for(String option : menuOptions){
+                System.out.println(option);
+            }
             order = Console.PromptForString("Enter your choice: ").toLowerCase();
+            System.out.println();
 
-            if (!menuOptions.contains(order)) {
-                System.out.println("\nPlease choose from the options:");
-                for (String option : menuOptions) {
-                    System.out.println(option);
-                }
-            } else {
+            if (menuOptions.contains(order)){
                 switch (order) {
                     case "sandwich":
-                        System.out.println();
                         sandwichInterface.orderSandwich();
                         System.out.println();
                         break;
