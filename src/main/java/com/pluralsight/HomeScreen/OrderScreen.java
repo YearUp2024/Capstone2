@@ -11,11 +11,6 @@ public class OrderScreen {
 
     public void userOrder() {
         List<String> menuOptions = toppingsOptions.mainMenue();
-//        System.out.println("Please select from options: ");
-//
-//        for(String option : menuOptions){
-//            System.out.println(option);
-//        }
 
         String order;
         do {

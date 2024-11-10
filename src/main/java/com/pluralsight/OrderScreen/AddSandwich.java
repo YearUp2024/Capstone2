@@ -6,16 +6,14 @@ public class AddSandwich extends MenuItem{
     private int size;
     private String breadType;
     private boolean toasted;
-    private double cost;
     private List<String> regularToppings;
     private List<String> premiumToppings;
 
-    public AddSandwich(String name, double price, int quantity, int size, String breadType, boolean toasted, double cost, List<String> regularToppings, List<String> premiumToppings) {
+    public AddSandwich(String name, double price, int quantity, int size, String breadType, boolean toasted, List<String> regularToppings, List<String> premiumToppings) {
         super(name, price, quantity);
         this.size = size;
         this.breadType = breadType;
         this.toasted = toasted;
-        this.cost = cost;
         this.regularToppings = regularToppings;
         this.premiumToppings = premiumToppings;
     }
@@ -58,13 +56,5 @@ public class AddSandwich extends MenuItem{
 
     public void setPremiumToppings(List<String> premiumToppings) {
         this.premiumToppings = premiumToppings;
-    }
-
-    public double getCost() {
-        return cost;
-    }
-
-    public void setCost(double cost) {
-        this.cost = cost;
     }
 }

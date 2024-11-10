@@ -53,7 +53,7 @@ public class SandwichInterface {
 
         double totalCost = calculateCost(sandwichSize, premiumToppings, extraMeat, extraCheese);
 
-        AddSandwich addSandwich = new AddSandwich("Custom Sandwich", totalCost, 1, sandwichSize, breadType, toasted, 0, regularToppings, premiumToppings);
+        AddSandwich addSandwich = new AddSandwich("Custom Sandwich", totalCost, 1, sandwichSize, breadType, toasted, regularToppings, premiumToppings);
 
         showOrderSummery(addSandwich);
     }
@@ -138,12 +138,22 @@ public class SandwichInterface {
         double cheeseCost = 0;
         double extraCheeseCost = 0;
 
+        int meatCount = 0;
+        int cheeseCount = 0;
+        for(String topping : premiumToppings){
+            if(isMeat(topping)){
+                meatCount++;
+            }else if(isCheese(topping)){
+                cheeseCount++;
+            }
+        }
+
         switch(sandwichSize){
             case 4:
                 baseCost = baseCost4;
-                meatCost = premiumToppings.size() * meatCost4;
+                meatCost = meatCount * meatCost4;
                 extraMeatCost = extraMeat ? extraMeatCost4 : 0;
-                cheeseCost = premiumToppings.size() * cheeseCost4;
+                cheeseCost = cheeseCount * cheeseCost4;
                 extraCheeseCost = extraCheese ? extraCheeseCost4 : 0;
                 break;
             case 8:
@@ -164,6 +174,15 @@ public class SandwichInterface {
         return baseCost + meatCost + extraMeatCost + cheeseCost + extraCheeseCost;
     }
 
+    public boolean isMeat(String topping){
+        List<String> meats = Arrays.asList("steak", "ham", "salami", "roast beef", "chicken", "bacon");
+        return meats.contains(topping.toLowerCase().trim());
+    }
+    public boolean isCheese(String topping){
+        List<String> cheese = Arrays.asList("american", "provolone", "cheddar", "swiss");
+        return cheese.contains(topping.toLowerCase().trim());
+    }
+
     private void showOrderSummery(AddSandwich addSandwich) {
         System.out.println("Your Order:");
         System.out.println("Size " + addSandwich.getSize() + " inches");
@@ -171,6 +190,6 @@ public class SandwichInterface {
         System.out.println("Toasted " + (addSandwich.isToasted() ? "Yes" : "No"));
         System.out.println("Regular toppings " + addSandwich.getRegularToppings());
         System.out.println("Premium toppings " + addSandwich.getPremiumToppings());
-        System.out.println("Total $" + addSandwich.getCost());
+        System.out.println("Total $" + addSandwich.getPrice());
     }
 }
