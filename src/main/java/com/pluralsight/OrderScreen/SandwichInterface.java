@@ -38,7 +38,7 @@ public class SandwichInterface {
         System.out.println();
         boolean extraMeat = false;
         String meat = Console.PromptForString("Do you want Meat? ");
-        if(meat.equalsIgnoreCase("Yes")){
+        if(meat.equalsIgnoreCase("Yes") || meat.equalsIgnoreCase("Y")){
             premiumToppings.addAll(promptForToppings("meat"));
             extraMeat = Console.PromptForYesNo("Do you want extra Meat ");
         }
@@ -46,7 +46,7 @@ public class SandwichInterface {
         System.out.println();
         String cheese = Console.PromptForString("Do you want Cheese? ");
         boolean extraCheese = false;
-        if(cheese.equalsIgnoreCase("Yes")){
+        if(cheese.equalsIgnoreCase("Yes") || cheese.equalsIgnoreCase("Y")){
             premiumToppings.addAll(promptForToppings("cheese"));
             extraCheese = Console.PromptForYesNo("Do you want extra Cheese ");
         }
@@ -54,6 +54,8 @@ public class SandwichInterface {
         double totalCost = calculateCost(sandwichSize, premiumToppings, extraMeat, extraCheese);
 
         AddSandwich addSandwich = new AddSandwich("Custom Sandwich", totalCost, 1, sandwichSize, breadType, toasted, 0, regularToppings, premiumToppings);
+
+        showOrderSummery(addSandwich);
     }
 
     private int promptForSandwichSize() {
@@ -160,5 +162,15 @@ public class SandwichInterface {
                 break;
         }
         return baseCost + meatCost + extraMeatCost + cheeseCost + extraCheeseCost;
+    }
+
+    private void showOrderSummery(AddSandwich addSandwich) {
+        System.out.println("Your Order:");
+        System.out.println("Size " + addSandwich.getSize() + " inches");
+        System.out.println("Bread " + addSandwich.getBreadType());
+        System.out.println("Toasted " + (addSandwich.isToasted() ? "Yes" : "No"));
+        System.out.println("Regular toppings " + addSandwich.getRegularToppings());
+        System.out.println("Premium toppings " + addSandwich.getPremiumToppings());
+        System.out.println("Total $" + addSandwich.getCost());
     }
 }
