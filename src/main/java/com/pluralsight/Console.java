@@ -16,16 +16,16 @@ public class Console {
     }
 
     public static boolean PromptForYesNo(String prompt) {
-        System.out.print(prompt + " ( Y for Yes, N for No )?");
-        String userinput = scanner.nextLine();
+        String userinput;
+        do{
+            System.out.print(prompt + " ( Y for Yes, N for No )?");
+            userinput = scanner.nextLine();
+        }while(!userinput.equalsIgnoreCase("Y") &&
+                !userinput.equalsIgnoreCase("Yes") &&
+                !userinput.equalsIgnoreCase("N") &&
+                !userinput.equalsIgnoreCase("No"));
 
-        return
-                (
-                        userinput.equalsIgnoreCase("Y")
-                                ||
-                                userinput.equalsIgnoreCase("YES")
-                );
-
+        return (userinput.equalsIgnoreCase("Y") || userinput.equalsIgnoreCase("YES"));
     }
 
     public static short PromptForShort(String prompt) {

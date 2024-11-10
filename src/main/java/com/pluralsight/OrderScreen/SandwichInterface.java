@@ -29,6 +29,7 @@ public class SandwichInterface {
 
         String breadType = promptForBreadType();
         boolean toasted = Console.PromptForYesNo("Do you want your bread to be toasted: ");
+
         System.out.println();
 
         List<String> regularToppings = promptForToppings("regular");
