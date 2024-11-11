@@ -72,4 +72,24 @@ public class ToppingsOptions {
 
         return regularToppings;
     }
+
+    public List<String> regularSaucesTopping(){
+        List<String> regularSauces = new ArrayList<>();
+        regularSauces.add("mayo");
+        regularSauces.add("mustard");
+        regularSauces.add("ketchup");
+        regularSauces.add("ranch");
+        regularSauces.add("thousand island");
+        regularSauces.add("vinaigrette");
+
+        return regularSauces;
+    }
+
+    public List<String> sidesToppings(){
+        List<String> sides = new ArrayList<>();
+        sides.add("au jus");
+        sides.add("sauce");
+
+        return sides;
+    }
 }
