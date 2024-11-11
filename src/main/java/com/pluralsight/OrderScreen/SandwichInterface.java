@@ -103,11 +103,10 @@ public class SandwichInterface {
 
     public List<String> promptForToppings(String type){
         List<String> toppings = new ArrayList<>();
+        List<String> validToopings = new ArrayList<>();
 
         boolean moreOptions = false;
         do{
-            List<String> validToopings = new ArrayList<>();
-
             if(type.equalsIgnoreCase("regular")){
                 System.out.println("Please choose Toppings from the options:");
                 validToopings = new ArrayList<>(toppingsOptions.regularToppingsType());
@@ -122,10 +121,6 @@ public class SandwichInterface {
                 validToopings = new ArrayList<>(toppingsOptions.regularSaucesTopping());
             }
 
-            for(String option : validToopings){
-                System.out.println(option);
-            }
-
             boolean validInput = false;
             while(!validInput){
                 String topping = Console.PromptForString("Enter your Toppings: ").toLowerCase();
@@ -135,8 +130,14 @@ public class SandwichInterface {
                     validInput = true;
                 }else{
                     System.out.println("\nPlease chose Toppings from the options.");
-                    for(String option : validToopings){
-                        System.out.println(option);
+                    if(type.equalsIgnoreCase("regular")){
+                        toppingsOptions.regularToppingsType();
+                    }else if(type.equalsIgnoreCase("meat")){
+                        toppingsOptions.meatTypes();
+                    }else if(type.equalsIgnoreCase("cheese")){
+                        toppingsOptions.cheeseTypes();
+                    }else if(type.equalsIgnoreCase("sauce")){
+                        toppingsOptions.regularSaucesTopping();
                     }
                 }
             }
