@@ -38,13 +38,21 @@ public class SandwichInterface {
         System.out.println();
         List<String> meatToppings = new ArrayList<>();
         boolean extraMeat = false;
-        String meat = Console.PromptForString("Do you want Meat? ");
-        if(meat.equalsIgnoreCase("Yes") || meat.equalsIgnoreCase("Y")){
-            meatToppings.addAll(promptForToppings("meat"));
-            extraMeat = Console.PromptForYesNo("Do you want extra Meat?");
-        }
-        premiumToppings.addAll(meatToppings);
-        System.out.println();
+        String meat;
+        do{
+            meat = Console.PromptForString("Do you want Meat? ");
+            if(meat.equalsIgnoreCase("Yes") || meat.equalsIgnoreCase("Y")){
+                meatToppings.addAll(promptForToppings("meat"));
+                extraMeat = Console.PromptForYesNo("Do you want extra Meat?");
+                System.out.println();
+            }else if(!meat.equalsIgnoreCase("Yes") && !meat.equalsIgnoreCase("Y") && !meat.equalsIgnoreCase("No") && !meat.equalsIgnoreCase("N")){
+                System.out.println("\nPlease enter Yes or No");
+            }else if(meat.equalsIgnoreCase("no") || meat.equalsIgnoreCase("n")){
+                System.out.println();
+            }
+            premiumToppings.addAll(meatToppings);
+        }while(!meat.equalsIgnoreCase("yes") && !meat.equalsIgnoreCase("y") && !meat.equalsIgnoreCase("no") && !meat.equalsIgnoreCase("n"));
+
 
         List<String> cheeseToppings = new ArrayList<>();
         String cheese = Console.PromptForString("Do you want Cheese? ");
