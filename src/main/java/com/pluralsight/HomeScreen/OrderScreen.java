@@ -12,12 +12,28 @@ public class OrderScreen {
     public void userOrder() {
         List<String> menuOptions;
 
-        String order;
+        String order = "";
         do {
             System.out.println("Please select from options: ");
             menuOptions = toppingsOptions.mainMenue();
 
-            order = Console.PromptForString("Enter your choice: ").toLowerCase();
+            int userChoice = Console.PromptForInt("Enter your choice: ");
+            do{
+                System.out.println("Please select from options: ");
+                menuOptions = toppingsOptions.mainMenue();
+
+                if(userChoice == 1){
+                    order = "sandwich";
+                }else if(userChoice == 2){
+                    order = "drink";
+                }else if(userChoice == 3){
+                    order = "chips";
+                }else if(userChoice == 4){
+                    order = "checkout";
+                }else if(userChoice == 5){
+                    order = "cancel order";
+                }
+            }while(userChoice != 1 || userChoice != 2 || userChoice != 3 || userChoice != 4 || userChoice != 5);
             System.out.println();
 
             if (menuOptions.contains(order)){
