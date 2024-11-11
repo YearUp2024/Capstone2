@@ -28,7 +28,7 @@ public class SandwichInterface {
         System.out.println();
 
         String breadType = promptForBreadType();
-        boolean toasted = Console.PromptForYesNo("Do you want your bread to be toasted: ");
+        boolean toasted = Console.PromptForYesNo("Do you want your bread to be toasted:");
 
         System.out.println();
 
@@ -36,20 +36,24 @@ public class SandwichInterface {
         List<String> premiumToppings = new ArrayList<>();
 
         System.out.println();
+        List<String> meatToppings = new ArrayList<>();
         boolean extraMeat = false;
         String meat = Console.PromptForString("Do you want Meat? ");
         if(meat.equalsIgnoreCase("Yes") || meat.equalsIgnoreCase("Y")){
-            premiumToppings.addAll(promptForToppings("meat"));
-            extraMeat = Console.PromptForYesNo("Do you want extra Meat ");
+            meatToppings.addAll(promptForToppings("meat"));
+            extraMeat = Console.PromptForYesNo("Do you want extra Meat?");
         }
-
+        premiumToppings.addAll(meatToppings);
         System.out.println();
+
+        List<String> cheeseToppings = new ArrayList<>();
         String cheese = Console.PromptForString("Do you want Cheese? ");
         boolean extraCheese = false;
         if(cheese.equalsIgnoreCase("Yes") || cheese.equalsIgnoreCase("Y")){
-            premiumToppings.addAll(promptForToppings("cheese"));
-            extraCheese = Console.PromptForYesNo("Do you want extra Cheese ");
+            cheeseToppings.addAll(promptForToppings("cheese"));
+            extraCheese = Console.PromptForYesNo("Do you want extra Cheese?");
         }
+        premiumToppings.addAll(cheeseToppings);
 
         double totalCost = calculateCost(sandwichSize, premiumToppings, extraMeat, extraCheese);
 
@@ -126,7 +130,7 @@ public class SandwichInterface {
                     }
                 }
             }
-            moreOptions = Console.PromptForYesNo("Do you want add more toppings? ");
+            moreOptions = Console.PromptForYesNo("Do you want add more toppings?");
         }while(moreOptions);
         return toppings;
     }
@@ -184,7 +188,7 @@ public class SandwichInterface {
     }
 
     private void showOrderSummery(AddSandwich addSandwich) {
-        System.out.println("Your Order:");
+        System.out.println("\nYour Order:");
         System.out.println("Size " + addSandwich.getSize() + " inches");
         System.out.println("Bread " + addSandwich.getBreadType());
         System.out.println("Toasted " + (addSandwich.isToasted() ? "Yes" : "No"));
