@@ -125,6 +125,9 @@ public class ToppingsOptions {
         sides.add("au jus");
         sides.add("sauce");
 
+        System.out.println("Au Jus");
+        System.out.println("Sauce");
+
         return sides;
     }
 }
