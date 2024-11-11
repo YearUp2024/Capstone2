@@ -70,12 +70,20 @@ public class SandwichInterface {
             premiumToppings.addAll(cheeseToppings);
         }while(!cheese.equalsIgnoreCase("yes") && !cheese.equalsIgnoreCase("y") && !cheese.equalsIgnoreCase("no") && !cheese.equalsIgnoreCase("n"));
 
-        List<String> sauceOptions = new ArrayList<>();
-        String sauce = Console.PromptForString("Do you want any Sauces? ");
-        if(sauce.equalsIgnoreCase("Yes") || sauce.equalsIgnoreCase("Y")){
-            sauceOptions.addAll(promptForToppings("sauce"));
-        }
-        regularToppings.addAll(sauceOptions);
+        List<String> sauceToppings = new ArrayList<>();
+        String sauce;
+        do{
+            sauce = Console.PromptForString("Do you want Sauce? ");
+            if(sauce.equalsIgnoreCase("Yes") || sauce.equalsIgnoreCase("Y")){
+                sauceToppings.addAll(promptForToppings("sauce"));
+                System.out.println();
+            }else if(!sauce.equalsIgnoreCase("Yes") && !sauce.equalsIgnoreCase("Y") && !sauce.equalsIgnoreCase("No") && !sauce.equalsIgnoreCase("N")){
+                System.out.println("\nPlease enter Yes or No");
+            }else if(sauce.equalsIgnoreCase("no") || sauce.equalsIgnoreCase("n")){
+                System.out.println();
+            }
+            regularToppings.addAll(sauceToppings);
+        }while(!sauce.equalsIgnoreCase("yes") && !sauce.equalsIgnoreCase("y") && !sauce.equalsIgnoreCase("no") && !sauce.equalsIgnoreCase("n"));
 
         double totalCost = calculateCost(sandwichSize, premiumToppings, extraMeat, extraCheese);
 
