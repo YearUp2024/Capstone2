@@ -55,6 +55,13 @@ public class SandwichInterface {
         }
         premiumToppings.addAll(cheeseToppings);
 
+        List<String> sauceOptions = new ArrayList<>();
+        String sauce = Console.PromptForString("\nDo you want any Sauces? ");
+        if(sauce.equalsIgnoreCase("Yes") || sauce.equalsIgnoreCase("Y")){
+            sauceOptions.addAll(promptForToppings("sauce"));
+        }
+        regularToppings.addAll(sauceOptions);
+
         double totalCost = calculateCost(sandwichSize, premiumToppings, extraMeat, extraCheese);
 
         AddSandwich addSandwich = new AddSandwich("Custom Sandwich", totalCost, 1, sandwichSize, breadType, toasted, regularToppings, premiumToppings);
@@ -97,7 +104,7 @@ public class SandwichInterface {
     public List<String> promptForToppings(String type){
         List<String> toppings = new ArrayList<>();
 
-        boolean moreOptions;
+        boolean moreOptions = false;
         do{
             List<String> validToopings = new ArrayList<>();
 
@@ -110,6 +117,9 @@ public class SandwichInterface {
             }else if(type.equalsIgnoreCase("cheese")){
                 System.out.println("Please choose from the Choose toppings options:");
                 validToopings = new ArrayList<>(toppingsOptions.cheeseTypes());
+            }else if(type.equalsIgnoreCase("sauce")){
+                System.out.println("Please choose from the Sauce options:");
+                validToopings = new ArrayList<>(toppingsOptions.regularSaucesTopping());
             }
 
             for(String option : validToopings){
@@ -130,7 +140,9 @@ public class SandwichInterface {
                     }
                 }
             }
-            moreOptions = Console.PromptForYesNo("Do you want add more toppings?");
+            if(type != "sauce"){
+                moreOptions = Console.PromptForYesNo("Do you want add more toppings?");
+            }
         }while(moreOptions);
         return toppings;
     }

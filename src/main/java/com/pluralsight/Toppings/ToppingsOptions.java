@@ -12,6 +12,12 @@ public class ToppingsOptions {
         menuOptions.add("checkout");
         menuOptions.add("cancel order");
 
+        System.out.println("Sandwich");
+        System.out.println("Drink");
+        System.out.println("Chips");
+        System.out.println("Checkout");
+        System.out.println("cancel order");
+
         return menuOptions;
     }
 
@@ -41,9 +47,16 @@ public class ToppingsOptions {
         meatToppings.add("steak");
         meatToppings.add("ham");
         meatToppings.add("salami");
-        meatToppings.add("roast Beef");
+        meatToppings.add("roast beef");
         meatToppings.add("chicken");
         meatToppings.add("bacon");
+
+        System.out.println("Steak");
+        System.out.println("Ham");
+        System.out.println("Salami");
+        System.out.println("Roast Beef");
+        System.out.println("Chicken");
+        System.out.println("Bacon");
 
         return meatToppings;
     }
@@ -54,6 +67,11 @@ public class ToppingsOptions {
         cheeseToppings.add("provolone");
         cheeseToppings.add("cheddar");
         cheeseToppings.add("swiss");
+
+        System.out.println("American Cheese");
+        System.out.println("Provolone Cheese");
+        System.out.println("Cheddar Cheese");
+        System.out.println("Swiss Cheese");
 
         return cheeseToppings;
     }
@@ -70,6 +88,16 @@ public class ToppingsOptions {
         regularToppings.add("guacamole");
         regularToppings.add("mushrooms");
 
+        System.out.println("Lettuce");
+        System.out.println("Peppers");
+        System.out.println("Onions");
+        System.out.println("Tomatoes");
+        System.out.println("Jalapenos");
+        System.out.println("Cucumbers");
+        System.out.println("Pickles");
+        System.out.println("Guacamole");
+        System.out.println("Mushrooms");
+
         return regularToppings;
     }
 
@@ -81,6 +109,13 @@ public class ToppingsOptions {
         regularSauces.add("ranch");
         regularSauces.add("thousand island");
         regularSauces.add("vinaigrette");
+
+        System.out.println("Mayo");
+        System.out.println("Mustard");
+        System.out.println("Ketchup");
+        System.out.println("Ranch");
+        System.out.println("Thousand Island");
+        System.out.println("Vinaigrette");
 
         return regularSauces;
     }

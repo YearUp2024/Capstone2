@@ -10,14 +10,13 @@ public class OrderScreen {
     ToppingsOptions toppingsOptions = new ToppingsOptions();
 
     public void userOrder() {
-        List<String> menuOptions = toppingsOptions.mainMenue();
+        List<String> menuOptions;
 
         String order;
         do {
             System.out.println("Please select from options: ");
-            for(String option : menuOptions){
-                System.out.println(option);
-            }
+            menuOptions = toppingsOptions.mainMenue();
+
             order = Console.PromptForString("Enter your choice: ").toLowerCase();
             System.out.println();
 
