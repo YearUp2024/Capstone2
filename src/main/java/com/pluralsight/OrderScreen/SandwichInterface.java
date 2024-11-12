@@ -122,12 +122,43 @@ public class SandwichInterface {
         System.out.println("What type of bread do you want?");
         List<String> breadType = toppingsOptions.breadTypes();
 
-        String userChoice;
+        String userChoice = "";
         do{
-            userChoice = Console.PromptForString("Enter you Bread Type: ").toLowerCase();
-            if(!breadType.contains(userChoice)){
-                System.out.println("\nPlease Choose from the options.");
-                toppingsOptions.breadTypes();
+            int userOption = 0;
+            boolean validInput = false;
+
+            while(!validInput){
+                try{
+                    userOption = Console.PromptForInt("Enter your choice: ");
+                    if(userOption >= 1 && userOption <= 4){
+                        validInput = true;
+                    }else{
+                        System.out.println("Please select from the options: ");
+                        toppingsOptions.breadTypes();
+                    }
+                }catch(Exception e){
+                    System.out.println("\nYour input is invalid. Please a number between 1 and 4.");
+                    System.out.println("Please select from the options: ");
+                    toppingsOptions.breadTypes();
+                }
+            }
+
+            switch(userOption){
+                case 1:
+                    userChoice = "white";
+                    break;
+                case 2:
+                    userChoice = "white";
+                    break;
+                case 3:
+                    userChoice = "white";
+                    break;
+                case 4:
+                    userChoice = "white";
+                    break;
+                default:
+                    System.out.println("Your choice is incorrect.");
+                    break;
             }
         }while(!breadType.contains(userChoice));
         return userChoice;
