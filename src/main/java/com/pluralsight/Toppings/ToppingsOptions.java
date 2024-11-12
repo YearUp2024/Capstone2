@@ -96,7 +96,7 @@ public class ToppingsOptions {
         System.out.println("[6] - Cucumbers");
         System.out.println("[7] - Pickles");
         System.out.println("[8] - Guacamole");
-        System.out.println("[19] - Mushrooms");
+        System.out.println("[9] - Mushrooms");
 
         return regularToppings;
     }
