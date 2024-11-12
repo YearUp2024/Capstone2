@@ -22,34 +22,6 @@ public class SandwichInterface {
     private static final double extraCheeseCost12 = 0.90;
 
     ToppingsOptions toppingsOptions = new ToppingsOptions();
-    List<String> regularToppings = new ArrayList<>();
-    List<String> premiumToppings = new ArrayList<>();
-
-    public class ToppingSelection{
-
-    }
-
-
-    public void orderSandwich(){
-        int sandwichSize = promptForSandwichSize();
-        System.out.println();
-
-        String breadType = promptForBreadType();
-        System.out.println(breadType);
-        boolean toasted = Console.PromptForYesNo("Do you want your bread to be toasted:");
-
-        List<String> regularToppingsType = promptForRegularToppings();
-
-        List<String> meatToppingsType = promptForMeatType();
-
-        List<String> cheeseToppingsType = promptForCheeseType();
-
-        double totalCost = calculateCost(sandwichSize, premiumToppings, extraMeat, extraCheese);
-
-        AddSandwich addSandwich = new AddSandwich("Custom Sandwich", totalCost, 1, sandwichSize, breadType, toasted, regularToppings, premiumToppings);
-
-        showOrderSummery(addSandwich);
-    }
 
     private int promptForSandwichSize() {
         int sandwichSize = 0;
@@ -115,7 +87,7 @@ public class SandwichInterface {
         return userChoice;
     }
 
-    public List<String> promptForRegularToppings(){
+    public ToppingSelection promptForRegularToppings(){
         List<String> normalToppings;
         List<String> selectedToppings = new ArrayList<>();
 
@@ -181,13 +153,13 @@ public class SandwichInterface {
             }
             addMoreToppings = Console.PromptForYesNo("Do you want to add more toppings?");
         }while(addMoreToppings);
-        regularToppings.addAll(selectedToppings);
-        return selectedToppings;
+        return new ToppingSelection(selectedToppings, new ArrayList<>(), false, false);
     }
 
-    public List<String> promptForMeatType(){
+    public ToppingSelection promptForMeatType(){
         List<String> meatToppings = new ArrayList<>();
-        boolean wantMeat = Console.PromptForYesNo("\nDo you want Meat on your Sandwich?");
+        boolean wantMeat = Console.PromptForYesNo("Do you want Meat on your Sandwich?");
+        boolean extraMeat = false;
 
         if(wantMeat){
             List<String> availableMeat;
@@ -243,14 +215,15 @@ public class SandwichInterface {
                 }
                 addMoreMeat = Console.PromptForYesNo("Do you want to add more Meat?");
             }while(addMoreMeat);
-            premiumToppings.addAll(meatToppings);
+            extraMeat = Console.PromptForYesNo("Do you want extra Meat?");
         }
-        return meatToppings;
+        return new ToppingSelection(new ArrayList<>(), meatToppings, extraMeat, false);
     }
 
-    public List<String> promptForCheeseType(){
+    public ToppingSelection promptForCheeseType(){
         List<String> cheeseToppings = new ArrayList<>();
-        boolean wantCheese = Console.PromptForYesNo("\nDo you want Cheese on your Sandwich?");
+        boolean wantCheese = Console.PromptForYesNo("Do you want Cheese on your Sandwich?");
+        boolean extraCheese = false;
 
         if(wantCheese){
             List<String> availableCheese;
@@ -298,61 +271,90 @@ public class SandwichInterface {
                 }
                 addMoreToppings = Console.PromptForYesNo("Do you want to add more cheese?");
             }while(addMoreToppings);
-            premiumToppings.addAll(cheeseToppings);
+            extraCheese = Console.PromptForYesNo("Do you want extra Cheese?");
         }
-        return cheeseToppings;
+        return new ToppingSelection(new ArrayList<>(), cheeseToppings, false, extraCheese);
     }
 
-    public double calculateCost(int sandwichSize, List<String> premiumToppings, boolean extraMeat, boolean extraCheese){
+    public void orderSandwich(){
+        int sandwichSize = promptForSandwichSize();
+        System.out.println();
+
+        String breadType = promptForBreadType();
+        boolean toasted = Console.PromptForYesNo("Do you want your bread to be toasted:");
+
+        System.out.println();
+
+        ToppingSelection regularToppingsSelection = promptForRegularToppings();
+        List<String> regularToppings = regularToppingsSelection.getRegularToppings();
+        System.out.println();
+
+        ToppingSelection meatSelection = promptForMeatType();
+        List<String> meatToppings = meatSelection.getPremiumToppings();
+        boolean extraMeat = meatSelection.isExtraMeat();
+        System.out.println();
+
+        ToppingSelection cheeseSelection = promptForCheeseType();
+        List<String> cheeseToppings = cheeseSelection.getPremiumToppings();
+        boolean extraCheese = cheeseSelection.isExtraCheese();
+
+        List<String> sauceOptions = new ArrayList<>();
+        String sauce = Console.PromptForString("\nDo you want Sauces?");
+        if(sauce.equalsIgnoreCase("Yes") || sauce.equalsIgnoreCase("Y")){
+            sauceOptions.addAll(sauceOptions);
+        }
+
+        double totalCost = calculateCost(sandwichSize, meatToppings, cheeseToppings, extraMeat, extraCheese);
+
+        AddSandwich addSandwich = new AddSandwich("Custom Sandwich", totalCost, 1, sandwichSize, breadType, toasted, regularToppings, meatToppings, cheeseToppings);
+
+        showOrderSummery(addSandwich);
+    }
+
+    public double calculateCost(int sandwichSize, List<String> meatToppings, List<String> cheeseToppings, boolean extraMeat, boolean extraCheese){
         double baseCost = 0;
         double meatCost = 0;
         double extraMeatCost = 0;
         double cheeseCost = 0;
         double extraCheeseCost = 0;
 
-        int meatCount = 0;
-        int cheeseCount = 0;
-        for(String topping : premiumToppings){
-            if(isMeat(topping)){
-                meatCount++;
-            }else if(isCheese(topping)){
-                cheeseCount++;
-            }
-        }
-
         switch(sandwichSize){
             case 4:
                 baseCost = baseCost4;
-                meatCost = meatCount * meatCost4;
-                extraMeatCost = extraMeat ? extraMeatCost4 : 0;
-                cheeseCost = cheeseCount * cheeseCost4;
-                extraCheeseCost = extraCheese ? extraCheeseCost4 : 0;
+                meatCost = meatCost4;
+                extraMeatCost = extraMeatCost4;
+                cheeseCost = cheeseCost4;
+                extraCheeseCost = extraCheeseCost4;
                 break;
             case 8:
                 baseCost = baseCost8;
-                meatCost = premiumToppings.size() * meatCost8;
-                extraMeatCost = extraMeat ? extraMeatCost8 : 0;
-                cheeseCost = premiumToppings.size() * cheeseCost8;
-                extraCheeseCost = extraCheese ? extraCheeseCost8 : 0;
+                meatCost = meatCost8;
+                extraMeatCost = extraMeatCost8;
+                cheeseCost = cheeseCost8;
+                extraCheeseCost = extraCheeseCost8;
                 break;
             case 12:
                 baseCost = baseCost12;
-                meatCost = premiumToppings.size() * meatCost12;
-                extraMeatCost = extraMeat ? extraMeatCost12 : 0;
-                cheeseCost = premiumToppings.size() * cheeseCost12;
-                extraCheeseCost = extraCheese ? extraCheeseCost12 : 0;
+                meatCost = meatCost12;
+                extraMeatCost = extraMeatCost12;
+                cheeseCost = cheeseCost12;
+                extraCheeseCost = extraCheeseCost12;
                 break;
         }
-        return baseCost + meatCost + extraMeatCost + cheeseCost + extraCheeseCost;
-    }
 
-    public boolean isMeat(String topping){
-        List<String> meats = Arrays.asList("steak", "ham", "salami", "roast beef", "chicken", "bacon");
-        return meats.contains(topping.toLowerCase().trim());
-    }
-    public boolean isCheese(String topping){
-        List<String> cheese = Arrays.asList("american", "provolone", "cheddar", "swiss");
-        return cheese.contains(topping.toLowerCase().trim());
+        double totalCost = baseCost;
+
+        totalCost += meatToppings.size() * meatCost;
+        if(extraMeat){
+            totalCost += extraMeatCost;
+        }
+
+        totalCost += cheeseToppings.size() * cheeseCost;
+        if(extraCheese){
+            totalCost += extraCheeseCost;
+        }
+
+        return totalCost;
     }
 
     private void showOrderSummery(AddSandwich addSandwich) {
@@ -361,7 +363,8 @@ public class SandwichInterface {
         System.out.println("Bread " + addSandwich.getBreadType());
         System.out.println("Toasted " + (addSandwich.isToasted() ? "Yes" : "No"));
         System.out.println("Regular toppings " + addSandwich.getRegularToppings());
-        System.out.println("Premium toppings " + addSandwich.getPremiumToppings());
+        System.out.println("Meat toppings " + addSandwich.getMeatToppings());
+        System.out.println("Cheese toppings " + addSandwich.getCheeseToppings());
         System.out.println("Total $" + addSandwich.getPrice());
     }
 }
