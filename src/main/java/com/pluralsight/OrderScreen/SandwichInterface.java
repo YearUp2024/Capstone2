@@ -307,28 +307,26 @@ public class SandwichInterface {
         boolean wantCheese = Console.PromptForYesNo("\nDo you want Cheese on your Sandwich?");
 
         if(wantCheese){
-            System.out.println("Which Cheese do you want?");
-            List<String> availableCheese = toppingsOptions.cheeseTypes();
+            List<String> availableCheese;
 
-            String userChoice = "";
+            String userChoice;
+            boolean addMoreToppings;
             do{
                 int userOptions = 0;
                 boolean validInput = false;
 
                 while(!validInput){
                     try{
+                        System.out.println("\nWhich Cheese do you want?");
+                        availableCheese = toppingsOptions.cheeseTypes();
                         userOptions = Console.PromptForInt("Enter your choice: ");
 
                         if(userOptions >= 1 && userOptions <= availableCheese.size()){
                             validInput = true;
-                        }else{
-                            System.out.println("\nPlease select from the options: ");
-                            toppingsOptions.cheeseTypes();
                         }
                     }catch(Exception e){
                         System.out.println("\nYour input is invalid. Please enter a number between 1 and 6.\n");
                         System.out.println("Please choose from the options:");
-                        toppingsOptions.cheeseTypes();
                     }
                 }
 
@@ -352,7 +350,8 @@ public class SandwichInterface {
                     default:
                         System.out.println("Your choice is incorrect.");
                 }
-            }while(!cheeseToppings.contains(userChoice));
+                addMoreToppings = Console.PromptForYesNo("Do you want to add more cheese?");
+            }while(addMoreToppings);
             premiumToppings.addAll(cheeseToppings);
         }
         return cheeseToppings;
