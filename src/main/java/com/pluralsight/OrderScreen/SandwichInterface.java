@@ -25,6 +25,11 @@ public class SandwichInterface {
     List<String> regularToppings = new ArrayList<>();
     List<String> premiumToppings = new ArrayList<>();
 
+    public class ToppingSelection{
+
+    }
+
+
     public void orderSandwich(){
         int sandwichSize = promptForSandwichSize();
         System.out.println();
@@ -34,74 +39,16 @@ public class SandwichInterface {
         boolean toasted = Console.PromptForYesNo("Do you want your bread to be toasted:");
 
         List<String> regularToppingsType = promptForRegularToppings();
-        System.out.println(regularToppingsType);
 
         List<String> meatToppingsType = promptForMeatType();
-        System.out.println(meatToppingsType);
 
         List<String> cheeseToppingsType = promptForCheeseType();
-        System.out.println(cheeseToppingsType);
 
-//        System.out.println();
-//        List<String> meatToppings = new ArrayList<>();
-//        boolean extraMeat = false;
-//        String meat;
-//        do{
-//            meat = Console.PromptForString("Do you want Meat? ");
-//            if(meat.equalsIgnoreCase("Yes") || meat.equalsIgnoreCase("Y")){
-//                meatToppings.addAll(promptForToppings("meat"));
-//                extraMeat = Console.PromptForYesNo("Do you want extra Meat?");
-//                System.out.println();
-//            }else if(!meat.equalsIgnoreCase("Yes") && !meat.equalsIgnoreCase("Y") && !meat.equalsIgnoreCase("No") && !meat.equalsIgnoreCase("N")){
-//                System.out.println("\nPlease enter Yes or No");
-//            }else if(meat.equalsIgnoreCase("no") || meat.equalsIgnoreCase("n")){
-//                System.out.println();
-//            }
-//            premiumToppings.addAll(meatToppings);
-//        }while(!meat.equalsIgnoreCase("yes") && !meat.equalsIgnoreCase("y") && !meat.equalsIgnoreCase("no") && !meat.equalsIgnoreCase("n"));
-//
-//        List<String> cheeseToppings = new ArrayList<>();
-//        boolean extraCheese = false;
-//        String cheese;
-//        do{
-//            cheese= Console.PromptForString("Do you want Cheese? ");
-//            if(cheese.equalsIgnoreCase("Yes") || cheese.equalsIgnoreCase("Y")){
-//                cheeseToppings.addAll(promptForToppings("cheese"));
-//                extraCheese = Console.PromptForYesNo("Do you want extra Cheese?");
-//                System.out.println();
-//            }else if(!cheese.equalsIgnoreCase("Yes") && !cheese.equalsIgnoreCase("Y") && !cheese.equalsIgnoreCase("No") && !cheese.equalsIgnoreCase("N")){
-//                System.out.println("\nPlease enter Yes or No");
-//            }else if(cheese.equalsIgnoreCase("no") || cheese.equalsIgnoreCase("n")){
-//                System.out.println();
-//            }
-//            premiumToppings.addAll(cheeseToppings);
-//        }while(!cheese.equalsIgnoreCase("yes") && !cheese.equalsIgnoreCase("y") && !cheese.equalsIgnoreCase("no") && !cheese.equalsIgnoreCase("n"));
-//
-//
-//        String sides;
-//        do{
-//            sides = Console.PromptForString("Do you want Sides? ");
-//            if(sides.equalsIgnoreCase("Yes") || sides.equalsIgnoreCase("Y")){
-//                System.out.println("Please choose from the Sides options.");
-//                toppingsOptions.sidesToppings();
-//
-//                String userSides = Console.PromptForString("Enter your choice: ");
-//                if(userSides.equalsIgnoreCase("sauce")){
-//                    List<String> sauceToppings = new ArrayList<>();
-//                    sauceToppings.addAll(promptForToppings("sauce"));
-//                    regularToppings.addAll(sauceToppings);
-//                    System.out.println();
-//                }else if(userSides.equalsIgnoreCase("au jus")){
-//                    regularToppings.add("au jus");
-//                }
-//            }
-//        }while(!sides.equalsIgnoreCase("yes") && !sides.equalsIgnoreCase("y") && !sides.equalsIgnoreCase("no") && !sides.equalsIgnoreCase("n"));
-//
-//        double totalCost = calculateCost(sandwichSize, premiumToppings, extraMeat, extraCheese);
+        double totalCost = calculateCost(sandwichSize, premiumToppings, extraMeat, extraCheese);
 
-//        AddSandwich addSandwich = new AddSandwich("Custom Sandwich", totalCost, 1, sandwichSize, breadType, toasted, regularToppings, premiumToppings);
-//
-//        showOrderSummery(addSandwich);
+        AddSandwich addSandwich = new AddSandwich("Custom Sandwich", totalCost, 1, sandwichSize, breadType, toasted, regularToppings, premiumToppings);
+
+        showOrderSummery(addSandwich);
     }
 
     private int promptForSandwichSize() {
