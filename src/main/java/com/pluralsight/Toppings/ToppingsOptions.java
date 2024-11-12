@@ -101,7 +101,7 @@ public class ToppingsOptions {
         return regularToppings;
     }
 
-    public List<String> regularSaucesTopping(){
+    public List<String> regularSideTopping(){
         List<String> regularSauces = new ArrayList<>();
         regularSauces.add("mayo");
         regularSauces.add("mustard");
@@ -109,6 +109,7 @@ public class ToppingsOptions {
         regularSauces.add("ranch");
         regularSauces.add("thousand island");
         regularSauces.add("vinaigrette");
+        regularSauces.add("au jus");
 
         System.out.println("[1] - Mayo");
         System.out.println("[2] - Mustard");
@@ -116,18 +117,8 @@ public class ToppingsOptions {
         System.out.println("[4] - Ranch");
         System.out.println("[5] - Thousand Island");
         System.out.println("[6] - Vinaigrette");
+        System.out.println("[7] - Au Jus");
 
         return regularSauces;
-    }
-
-    public List<String> sidesToppings(){
-        List<String> sides = new ArrayList<>();
-        sides.add("au jus");
-        sides.add("sauce");
-
-        System.out.println("[1] - Au Jus");
-        System.out.println("[2] - Sauce");
-
-        return sides;
     }
 }
