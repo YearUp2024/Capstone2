@@ -34,10 +34,10 @@ public class ToppingsOptions {
         breadTypes.add("rye");
         breadTypes.add("wrap");
 
-        System.out.println("White");
-        System.out.println("Wheat");
-        System.out.println("Rye");
-        System.out.println("Wrap");
+        System.out.println("[1] - White");
+        System.out.println("[2] - Wheat");
+        System.out.println("[3] - Rye");
+        System.out.println("[4] - Wrap");
 
         return breadTypes;
     }
@@ -51,12 +51,12 @@ public class ToppingsOptions {
         meatToppings.add("chicken");
         meatToppings.add("bacon");
 
-        System.out.println("Steak");
-        System.out.println("Ham");
-        System.out.println("Salami");
-        System.out.println("Roast Beef");
-        System.out.println("Chicken");
-        System.out.println("Bacon");
+        System.out.println("[1] - Steak");
+        System.out.println("[2] - Ham");
+        System.out.println("[3] - Salami");
+        System.out.println("[4] - Roast Beef");
+        System.out.println("[5] - Chicken");
+        System.out.println("[6] - Bacon");
 
         return meatToppings;
     }
@@ -68,10 +68,10 @@ public class ToppingsOptions {
         cheeseToppings.add("cheddar");
         cheeseToppings.add("swiss");
 
-        System.out.println("American Cheese");
-        System.out.println("Provolone Cheese");
-        System.out.println("Cheddar Cheese");
-        System.out.println("Swiss Cheese");
+        System.out.println("[1] - American Cheese");
+        System.out.println("[2] - Provolone Cheese");
+        System.out.println("[3] - Cheddar Cheese");
+        System.out.println("[4] - Swiss Cheese");
 
         return cheeseToppings;
     }
@@ -88,15 +88,15 @@ public class ToppingsOptions {
         regularToppings.add("guacamole");
         regularToppings.add("mushrooms");
 
-        System.out.println("Lettuce");
-        System.out.println("Peppers");
-        System.out.println("Onions");
-        System.out.println("Tomatoes");
-        System.out.println("Jalapenos");
-        System.out.println("Cucumbers");
-        System.out.println("Pickles");
-        System.out.println("Guacamole");
-        System.out.println("Mushrooms");
+        System.out.println("[1] - Lettuce");
+        System.out.println("[2] - Peppers");
+        System.out.println("[3] - Onions");
+        System.out.println("[4] - Tomatoes");
+        System.out.println("[5] - Jalapenos");
+        System.out.println("[6] - Cucumbers");
+        System.out.println("[7] - Pickles");
+        System.out.println("[8] - Guacamole");
+        System.out.println("[19] - Mushrooms");
 
         return regularToppings;
     }
@@ -110,12 +110,12 @@ public class ToppingsOptions {
         regularSauces.add("thousand island");
         regularSauces.add("vinaigrette");
 
-        System.out.println("Mayo");
-        System.out.println("Mustard");
-        System.out.println("Ketchup");
-        System.out.println("Ranch");
-        System.out.println("Thousand Island");
-        System.out.println("Vinaigrette");
+        System.out.println("[1] - Mayo");
+        System.out.println("[2] - Mustard");
+        System.out.println("[3] - Ketchup");
+        System.out.println("[4] - Ranch");
+        System.out.println("[5] - Thousand Island");
+        System.out.println("[6] - Vinaigrette");
 
         return regularSauces;
     }
@@ -125,8 +125,8 @@ public class ToppingsOptions {
         sides.add("au jus");
         sides.add("sauce");
 
-        System.out.println("Au Jus");
-        System.out.println("Sauce");
+        System.out.println("[1] - Au Jus");
+        System.out.println("[2] - Sauce");
 
         return sides;
     }
