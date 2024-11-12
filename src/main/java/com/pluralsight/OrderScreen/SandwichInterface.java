@@ -137,11 +137,11 @@ public class SandwichInterface {
                     if(userOption >= 1 && userOption <= 4){
                         validInput = true;
                     }else{
-                        System.out.println("Please select from the options: ");
+                        System.out.println("\nPlease select from the options: ");
                         toppingsOptions.breadTypes();
                     }
                 }catch(Exception e){
-                    System.out.println("\nYour input is invalid. Please enter a number between 1 and 4.");
+                    System.out.println("\nYour input is invalid. Please enter a number between 1 and 4.\n");
                     System.out.println("Please select from the Options: ");
                     toppingsOptions.breadTypes();
                 }
@@ -169,8 +169,9 @@ public class SandwichInterface {
     }
 
     public List<String> promptForRegularToppings(){
-        System.out.println("What toppings do you want?");
+        System.out.println("\nWhat toppings do you want?");
         List<String> normalToppings = toppingsOptions.regularToppingsType();
+        List<String> selectedToppings = new ArrayList<>();
 
         String userChoice = "";
         do{
@@ -180,59 +181,66 @@ public class SandwichInterface {
             while(!validInput){
                 try{
                     userOption = Console.PromptForInt("Enter your choice: ");
-                    if(userOption >= 1 && userOption <= 9){
+                    if(userOption >= 1 && userOption <= normalToppings.size()){
                         validInput = true;
                     }else{
-                        System.out.println("Please select from the options: ");
+                        System.out.println("\nPlease select from the options: ");
                         toppingsOptions.regularToppingsType();
                     }
                 }catch(Exception e){
-                    System.out.println("\nYour input is invalid. Please enter a number between 1 and 9");
+                    System.out.println("\nYour input is invalid. Please enter a number between 1 and 9\n");
+                    System.out.println("Please select from the options:");
                     toppingsOptions.regularToppingsType();
-                    System.out.println("Please select from the options: ");
                 }
             }
 
             switch(userOption){
                 case 1:
                     userChoice = "lettuce";
+                    selectedToppings.add(userChoice);
                     break;
                 case 2:
                     userChoice = "peppers";
+                    selectedToppings.add(userChoice);
                     break;
                 case 3:
-                    userChoice = "onions";
+                    userChoice = "onions";selectedToppings.add(userChoice);
                     break;
                 case 4:
                     userChoice = "tomatoes";
+                    selectedToppings.add(userChoice);
                     break;
                 case 5:
                     userChoice = "jalapenos";
+                    selectedToppings.add(userChoice);
                     break;
                 case 6:
                     userChoice = "cucumbers";
+                    selectedToppings.add(userChoice);
                     break;
                 case 7:
                     userChoice = "pickles";
+                    selectedToppings.add(userChoice);
                     break;
                 case 8:
                     userChoice = "guacamole";
+                    selectedToppings.add(userChoice);
                     break;
                 case 9:
                     userChoice = "mushrooms";
+                    selectedToppings.add(userChoice);
                     break;
                 default:
                     System.out.println("Your choice is incorrect.");
-
             }
         }while(!normalToppings.contains(userChoice));
-        regularToppings.addAll(normalToppings);
-        return normalToppings;
+        regularToppings.addAll(selectedToppings);
+        return selectedToppings;
     }
 
     public List<String> promptForMeatType(){
         List<String> meatToppings = new ArrayList<>();
-        boolean wantMeat = Console.PromptForYesNo("Do you want Meat on your Sandwich?");
+        boolean wantMeat = Console.PromptForYesNo("\nDo you want Meat on your Sandwich?");
 
         if(wantMeat){
             System.out.println("Which Meat do you want?");
@@ -247,35 +255,43 @@ public class SandwichInterface {
                     try{
                         userOptions = Console.PromptForInt("Enter your choice: ");
 
-                        if(userOptions >= 1 && userOptions <= 6){
-                            meatToppings.addAll(availableMeat);
+                        if(userOptions >= 1 && userOptions <= availableMeat.size()){
                             validInput = true;
                         }else{
-                            System.out.println("Please select from the options: ");
+                            System.out.println("\nPlease select from the options: ");
+                            toppingsOptions.meatTypes();
                         }
                     }catch(Exception e){
-                        System.out.println("\nYour input is invalid. Please enter a number between 1 and 6.");
+                        System.out.println("\nYour input is invalid. Please enter a number between 1 and 6.\n");
+                        System.out.println("Please choose from the options:");
+                        toppingsOptions.meatTypes();
                     }
                 }
 
                 switch(userOptions){
                     case 1:
                         userChoice = "steak";
+                        meatToppings.add(userChoice);
                         break;
                     case 2:
                         userChoice = "ham";
+                        meatToppings.add(userChoice);
                         break;
                     case 3:
                         userChoice = "salami";
+                        meatToppings.add(userChoice);
                         break;
                     case 4:
                         userChoice = "roast beef";
+                        meatToppings.add(userChoice);
                         break;
                     case 5:
                         userChoice = "chicken";
+                        meatToppings.add(userChoice);
                         break;
                     case 6:
                         userChoice = "bacon";
+                        meatToppings.add(userChoice);
                         break;
                     default:
                         System.out.println("Your choice is incorrect.");
@@ -288,7 +304,7 @@ public class SandwichInterface {
 
     public List<String> promptForCheeseType(){
         List<String> cheeseToppings = new ArrayList<>();
-        boolean wantCheese = Console.PromptForYesNo("Do you want Cheese on your Sandwich?");
+        boolean wantCheese = Console.PromptForYesNo("\nDo you want Cheese on your Sandwich?");
 
         if(wantCheese){
             System.out.println("Which Cheese do you want?");
@@ -296,40 +312,48 @@ public class SandwichInterface {
 
             String userChoice = "";
             do{
-                int userOption = 0;
+                int userOptions = 0;
                 boolean validInput = false;
 
                 while(!validInput){
                     try{
-                        userChoice = Console.PromptForString("Enter your choice: ");
+                        userOptions = Console.PromptForInt("Enter your choice: ");
 
-                        if(userOption >= 1 && userOption <= 4){
-                            cheeseToppings.addAll(availableCheese);
+                        if(userOptions >= 1 && userOptions <= availableCheese.size()){
                             validInput = true;
                         }else{
-                            System.out.println("Please select from the options: ");
+                            System.out.println("\nPlease select from the options: ");
+                            toppingsOptions.cheeseTypes();
                         }
                     }catch(Exception e){
-                        System.out.println("\nYour input is invalid. Please enter a number between 1 and 4.");
-                    }
-
-                    switch(userOption){
-                        case 1:
-                            userChoice = "american";
-                            break;
-                        case 2:
-                            userChoice = "provolone";
-                            break;
-                        case 3:
-                            userChoice = "cheddar";
-                            break;
-                        case 4:
-                            userChoice = "swiss";
-                            break;
+                        System.out.println("\nYour input is invalid. Please enter a number between 1 and 6.\n");
+                        System.out.println("Please choose from the options:");
+                        toppingsOptions.cheeseTypes();
                     }
                 }
-            }while(!availableCheese.contains(userChoice));
-            cheeseToppings.addAll(availableCheese);
+
+                switch(userOptions){
+                    case 1:
+                        userChoice = "american";
+                        cheeseToppings.add(userChoice);
+                        break;
+                    case 2:
+                        userChoice = "provolone";
+                        cheeseToppings.add(userChoice);
+                        break;
+                    case 3:
+                        userChoice = "cheddar";
+                        cheeseToppings.add(userChoice);
+                        break;
+                    case 4:
+                        userChoice = "swiss";
+                        cheeseToppings.add(userChoice);
+                        break;
+                    default:
+                        System.out.println("Your choice is incorrect.");
+                }
+            }while(!cheeseToppings.contains(userChoice));
+            premiumToppings.addAll(cheeseToppings);
         }
         return cheeseToppings;
     }
