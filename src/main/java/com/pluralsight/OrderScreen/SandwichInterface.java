@@ -169,28 +169,27 @@ public class SandwichInterface {
     }
 
     public List<String> promptForRegularToppings(){
-        System.out.println("\nWhat toppings do you want?");
-        List<String> normalToppings = toppingsOptions.regularToppingsType();
+        List<String> normalToppings;
         List<String> selectedToppings = new ArrayList<>();
 
-        String userChoice = "";
+        String userChoice;
+        boolean addMoreToppings;
         do{
             int userOption = 0;
             boolean validInput = false;
 
             while(!validInput){
                 try{
+                    System.out.println("\nWhich toppings do you want?");
+                    normalToppings = toppingsOptions.regularToppingsType();
                     userOption = Console.PromptForInt("Enter your choice: ");
+
                     if(userOption >= 1 && userOption <= normalToppings.size()){
                         validInput = true;
-                    }else{
-                        System.out.println("\nPlease select from the options: ");
-                        toppingsOptions.regularToppingsType();
                     }
                 }catch(Exception e){
                     System.out.println("\nYour input is invalid. Please enter a number between 1 and 9\n");
                     System.out.println("Please select from the options:");
-                    toppingsOptions.regularToppingsType();
                 }
             }
 
@@ -233,7 +232,8 @@ public class SandwichInterface {
                 default:
                     System.out.println("Your choice is incorrect.");
             }
-        }while(!normalToppings.contains(userChoice));
+            addMoreToppings = Console.PromptForYesNo("Do you want to add more toppings?");
+        }while(addMoreToppings);
         regularToppings.addAll(selectedToppings);
         return selectedToppings;
     }
@@ -243,28 +243,26 @@ public class SandwichInterface {
         boolean wantMeat = Console.PromptForYesNo("\nDo you want Meat on your Sandwich?");
 
         if(wantMeat){
-            System.out.println("Which Meat do you want?");
-            List<String> availableMeat = toppingsOptions.meatTypes();
+            List<String> availableMeat;
 
-            String userChoice = "";
+            String userChoice;
+            boolean addMoreMeat;
             do{
                 int userOptions = 0;
                 boolean validInput = false;
 
                 while(!validInput){
                     try{
+                        System.out.println("Which Meat do you want?");
+                        availableMeat = toppingsOptions.meatTypes();
                         userOptions = Console.PromptForInt("Enter your choice: ");
 
                         if(userOptions >= 1 && userOptions <= availableMeat.size()){
                             validInput = true;
-                        }else{
-                            System.out.println("\nPlease select from the options: ");
-                            toppingsOptions.meatTypes();
                         }
                     }catch(Exception e){
                         System.out.println("\nYour input is invalid. Please enter a number between 1 and 6.\n");
                         System.out.println("Please choose from the options:");
-                        toppingsOptions.meatTypes();
                     }
                 }
 
@@ -296,7 +294,8 @@ public class SandwichInterface {
                     default:
                         System.out.println("Your choice is incorrect.");
                 }
-            }while(!meatToppings.contains(userChoice));
+                addMoreMeat = Console.PromptForYesNo("Do you want to add more Meat?");
+            }while(addMoreMeat);
             premiumToppings.addAll(meatToppings);
         }
         return meatToppings;
@@ -356,53 +355,6 @@ public class SandwichInterface {
         }
         return cheeseToppings;
     }
-
-//    public List<String> promptForToppings(String type){
-//        List<String> toppings = new ArrayList<>();
-//        List<String> validToopings = new ArrayList<>();
-//
-//        boolean moreOptions = false;
-//        do{
-//            if(type.equalsIgnoreCase("regular")){
-//                System.out.println("Please choose Toppings from the options:");
-//                validToopings = new ArrayList<>(toppingsOptions.regularToppingsType());
-//            }else if(type.equalsIgnoreCase("meat")){
-//                System.out.println("Please choose from the Meat toppings options:");
-//                validToopings = new ArrayList<>(toppingsOptions.meatTypes());
-//            }else if(type.equalsIgnoreCase("cheese")){
-//                System.out.println("Please choose from the Choose toppings options:");
-//                validToopings = new ArrayList<>(toppingsOptions.cheeseTypes());
-//            }else if(type.equalsIgnoreCase("sauce")){
-//                System.out.println("Please choose from the Sauce options:");
-//                validToopings = new ArrayList<>(toppingsOptions.regularSaucesTopping());
-//            }
-//
-//            boolean validInput = false;
-//            while(!validInput){
-//                String topping = Console.PromptForString("Enter your Toppings: ").toLowerCase();
-//
-//                if(validToopings.contains(topping)){
-//                    toppings.add(topping);
-//                    validInput = true;
-//                }else{
-//                    System.out.println("\nPlease chose Toppings from the options.");
-//                    if(type.equalsIgnoreCase("regular")){
-//                        toppingsOptions.regularToppingsType();
-//                    }else if(type.equalsIgnoreCase("meat")){
-//                        toppingsOptions.meatTypes();
-//                    }else if(type.equalsIgnoreCase("cheese")){
-//                        toppingsOptions.cheeseTypes();
-//                    }else if(type.equalsIgnoreCase("sauce")){
-//                        toppingsOptions.regularSaucesTopping();
-//                    }
-//                }
-//            }
-//            if(type.equalsIgnoreCase("sauce")){
-//                moreOptions = Console.PromptForYesNo("Do you want add more toppings?");
-//            }
-//        }while(moreOptions);
-//        return toppings;
-//    }
 
     public double calculateCost(int sandwichSize, List<String> premiumToppings, boolean extraMeat, boolean extraCheese){
         double baseCost = 0;
