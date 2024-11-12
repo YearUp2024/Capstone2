@@ -26,7 +26,9 @@ public class OrderScreen {
                         validInput = true;
                     }
                 }catch(Exception e){
-                    System.out.println("\nYour input is invalid. Please enter a number between 1 and 5.");
+                    System.out.println("\n-------------------------------------------------------------------------------------");
+                    System.out.println("            Your input is invalid. Please enter a number between 1 and 5.");
+                    System.out.println("-------------------------------------------------------------------------------------\n");
                 }
             }
 

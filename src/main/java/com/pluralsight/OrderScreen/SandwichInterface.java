@@ -60,7 +60,9 @@ public class SandwichInterface {
                         toppingsOptions.breadTypes();
                     }
                 }catch(Exception e){
-                    System.out.println("\nYour input is invalid. Please enter a number between 1 and 4.\n");
+                    System.out.println("\n-------------------------------------------------------------------------------------");
+                    System.out.println("            Your input is invalid. Please enter a number between 1 and 4.");
+                    System.out.println("-------------------------------------------------------------------------------------\n");
                     System.out.println("Please select from the Options: ");
                     toppingsOptions.breadTypes();
                 }
@@ -99,7 +101,7 @@ public class SandwichInterface {
 
             while(!validInput){
                 try{
-                    System.out.println("\nWhich toppings do you want?");
+                    System.out.println("Which toppings do you want?");
                     normalToppings = toppingsOptions.regularToppingsType();
                     userOption = Console.PromptForInt("Enter your choice: ");
 
@@ -107,7 +109,9 @@ public class SandwichInterface {
                         validInput = true;
                     }
                 }catch(Exception e){
-                    System.out.println("\nYour input is invalid. Please enter a number between 1 and 9\n");
+                    System.out.println("\n-------------------------------------------------------------------------------------");
+                    System.out.println("            Your input is invalid. Please enter a number between 1 and 9.");
+                    System.out.println("-------------------------------------------------------------------------------------\n");
                     System.out.println("Please select from the options:");
                 }
             }
@@ -180,7 +184,9 @@ public class SandwichInterface {
                             validInput = true;
                         }
                     }catch(Exception e){
-                        System.out.println("\nYour input is invalid. Please enter a number between 1 and 6.\n");
+                        System.out.println("\n-------------------------------------------------------------------------------------");
+                        System.out.println("            Your input is invalid. Please enter a number between 1 and 6.");
+                        System.out.println("-------------------------------------------------------------------------------------\n");
                         System.out.println("Please choose from the options:");
                     }
                 }
@@ -244,7 +250,9 @@ public class SandwichInterface {
                             validInput = true;
                         }
                     }catch(Exception e){
-                        System.out.println("\nYour input is invalid. Please enter a number between 1 and 6.\n");
+                        System.out.println("\n-------------------------------------------------------------------------------------");
+                        System.out.println("            Your input is invalid. Please enter a number between 1 and 6.");
+                        System.out.println("-------------------------------------------------------------------------------------\n");
                         System.out.println("Please choose from the options:");
                     }
                 }
@@ -300,7 +308,9 @@ public class SandwichInterface {
                             validInput = true;
                         }
                     }catch(Exception e){
-                        System.out.println("\nYour input is invalid. Please enter a number between 1 and 7.\n");
+                        System.out.println("\n-------------------------------------------------------------------------------------");
+                        System.out.println("            Your input is invalid. Please enter a number between 1 and 7.");
+                        System.out.println("-------------------------------------------------------------------------------------\n");
                         System.out.println("Please choose from the options:");
                     }
                 }
@@ -423,13 +433,24 @@ public class SandwichInterface {
     }
 
     private void showOrderSummery(AddSandwich addSandwich) {
-        System.out.println("Your Order:");
-        System.out.println("Size " + addSandwich.getSize() + " inches");
-        System.out.println("Bread " + addSandwich.getBreadType());
-        System.out.println("Toasted " + (addSandwich.isToasted() ? "Yes" : "No"));
-        System.out.println("Regular toppings " + addSandwich.getRegularToppings());
-        System.out.println("Meat toppings " + addSandwich.getMeatToppings());
-        System.out.println("Cheese toppings " + addSandwich.getCheeseToppings());
-        System.out.println("Total $" + addSandwich.getPrice());
+        System.out.println("------------------------------------------------------------------------------------");
+        System.out.println("                                     Your Order:                                  ");
+        System.out.println("------------------------------------------------------------------------------------");
+        System.out.println("                            Sandwich size: " + addSandwich.getSize() + " inches                                   ");
+        System.out.println("                            Bread Type: " + addSandwich.getBreadType() + "                                          ");
+        System.out.println("                            Bread Toasted: " + (addSandwich.isToasted() ? "Yes" : "No") + "                                     ");
+        System.out.println("                            Regular toppings: " + formtToppings(addSandwich.getRegularToppings()) + "                        ");
+        System.out.println("                            Meat toppings: " + formtToppings(addSandwich.getMeatToppings()) + "                                   ");
+        System.out.println("                            Cheese toppings: " + formtToppings(addSandwich.getCheeseToppings()) + "                              ");
+        System.out.println("----------------------------------------------------------------------------------");
+        System.out.println("                            Your Total for this Order is $" + addSandwich.getPrice() + "                         ");
+        System.out.println("----------------------------------------------------------------------------------");
+    }
+
+    private String formtToppings(List<String> toppings){
+        if(toppings.isEmpty()){
+            return "None";
+        }
+        return String.join(", ", toppings);
     }
 }
