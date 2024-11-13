@@ -85,6 +85,10 @@ public class SandwichInterface {
 
         boolean wantsToSaveOrder = Console.PromptForYesNo("Do you want to save your order? ");
         String saveOrder = checkout.saveOrder(wantsToSaveOrder, addSandwich);
+
+        System.out.println("\n----------------------------------------------------------------------------------");
+        System.out.println( "                     " + saveOrder);
+        System.out.println("----------------------------------------------------------------------------------");
     }
 
     private int promptForSandwichSize() {
