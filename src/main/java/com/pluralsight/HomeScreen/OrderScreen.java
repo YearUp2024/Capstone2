@@ -63,6 +63,7 @@ public class OrderScreen {
 
             switch (order) {
                 case "sandwich":
+
                     sandwichInterface.orderSandwich();
                     System.out.println();
                     break;
