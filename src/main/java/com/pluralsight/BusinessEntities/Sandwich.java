@@ -1,8 +1,8 @@
-package com.pluralsight.OrderScreen;
+package com.pluralsight.BusinessEntities;
 
 import java.util.List;
 
-public class AddSandwich extends MenuItem{
+public class Sandwich extends MenuItem {
     private int size;
     private String breadType;
     private boolean toasted;
@@ -10,7 +10,7 @@ public class AddSandwich extends MenuItem{
     private List<String> meatToppings;
     private List<String> cheeseToppings;
 
-    public AddSandwich(String name, double price, int quantity, int size, String breadType, boolean toasted, List<String> regularToppings, List<String> meatToppings, List<String> cheeseToppings) {
+    public Sandwich(String name, double price, int quantity, int size, String breadType, boolean toasted, List<String> regularToppings, List<String> meatToppings, List<String> cheeseToppings) {
         super(name, price, quantity);
         this.size = size;
         this.breadType = breadType;

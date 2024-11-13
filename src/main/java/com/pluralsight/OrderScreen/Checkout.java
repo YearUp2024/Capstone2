@@ -1,11 +1,12 @@
 package com.pluralsight.OrderScreen;
 
+import com.pluralsight.BusinessEntities.Sandwich;
 import com.pluralsight.Console;
 import java.io.FileWriter;
 import java.util.List;
 
 public class Checkout {
-    public String saveOrder(boolean wantsToSaveOrder, AddSandwich sandwich){
+    public String saveOrder(boolean wantsToSaveOrder, Sandwich sandwich){
 
         if(wantsToSaveOrder){
             try(FileWriter fileWriter = new FileWriter("saveOrder.txt", true)){

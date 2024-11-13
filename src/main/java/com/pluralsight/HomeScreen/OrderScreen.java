@@ -1,7 +1,7 @@
 package com.pluralsight.HomeScreen;
 
 import com.pluralsight.Console;
-import com.pluralsight.OrderScreen.AddSandwich;
+import com.pluralsight.BusinessEntities.Sandwich;
 import com.pluralsight.OrderScreen.Checkout;
 import com.pluralsight.OrderScreen.DrinksInterface;
 import com.pluralsight.OrderScreen.SandwichInterface;
@@ -13,8 +13,7 @@ public class OrderScreen {
     ToppingsOptions toppingsOptions = new ToppingsOptions();
     DrinksInterface drinks = new DrinksInterface();
     Checkout checkout = new Checkout();
-
-    AddSandwich addSandwich;
+    Sandwich sandwich;
 
     public void userOrder() {
         //List<String> menuOptions;
@@ -63,7 +62,6 @@ public class OrderScreen {
 
             switch (order) {
                 case "sandwich":
-
                     sandwichInterface.orderSandwich();
                     System.out.println();
                     break;
@@ -76,9 +74,9 @@ public class OrderScreen {
                     System.out.println();
                     break;
                 case "checkout":
-                    if(addSandwich != null){
+                    if(sandwich != null){
                         boolean wantsToSaveOrder = Console.PromptForYesNo("Do you want to save your order? ");
-                        String saveOrder = checkout.saveOrder(wantsToSaveOrder, addSandwich);
+                        String saveOrder = checkout.saveOrder(wantsToSaveOrder, sandwich);
                     }
                     break;
                 case "cancel order":

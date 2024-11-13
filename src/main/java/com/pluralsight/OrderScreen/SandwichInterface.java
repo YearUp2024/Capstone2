@@ -1,5 +1,7 @@
 package com.pluralsight.OrderScreen;
 
+import com.pluralsight.BusinessEntities.MenuItem;
+import com.pluralsight.BusinessEntities.Sandwich;
 import com.pluralsight.Console;
 import com.pluralsight.Toppings.ToppingsOptions;
 import java.util.*;
@@ -23,7 +25,7 @@ public class SandwichInterface {
 
     ToppingsOptions toppingsOptions = new ToppingsOptions();
     Checkout checkout = new Checkout();
-    AddSandwich addSandwich;
+    Sandwich sandwich;
 
     public void orderSandwich(){
         int numberOfSandwich = Console.PromptForInt("How many sandwiches do you want? ");
@@ -38,20 +40,20 @@ public class SandwichInterface {
 
             System.out.println();
 
-            ToppingSelection regularToppingsSelection = promptForRegularToppings();
+            MenuItem.ToppingSelection regularToppingsSelection = promptForRegularToppings();
             List<String> regularToppings = regularToppingsSelection.getRegularToppings();
             System.out.println();
 
-            ToppingSelection meatSelection = promptForMeatType();
+            MenuItem.ToppingSelection meatSelection = promptForMeatType();
             List<String> meatToppings = meatSelection.getPremiumToppings();
             boolean extraMeat = meatSelection.isExtraMeat();
             System.out.println();
 
-            ToppingSelection cheeseSelection = promptForCheeseType();
+            MenuItem.ToppingSelection cheeseSelection = promptForCheeseType();
             List<String> cheeseToppings = cheeseSelection.getPremiumToppings();
             boolean extraCheese = cheeseSelection.isExtraCheese();
 
-            ToppingSelection sidesToppingsSelection = promptForSides();
+            MenuItem.ToppingSelection sidesToppingsSelection = promptForSides();
             List<String> sidesToppings = sidesToppingsSelection.getRegularToppings();
             regularToppings.addAll(sidesToppings);
             System.out.println();
@@ -59,7 +61,7 @@ public class SandwichInterface {
             double totalCost = calculateCost(sandwichSize, meatToppings, cheeseToppings, extraMeat, extraCheese);
             totalOrderCost += totalCost;
 
-            addSandwich = new AddSandwich("Custom Sandwich", totalCost, 1, sandwichSize, breadType, toasted, regularToppings, meatToppings, cheeseToppings);
+            sandwich = new Sandwich("Custom Sandwich", totalCost, 1, sandwichSize, breadType, toasted, regularToppings, meatToppings, cheeseToppings);
 
             if(numberOfSandwich > 1){
                 System.out.println("------------------------------------------------------------------------------------");
@@ -71,23 +73,20 @@ public class SandwichInterface {
                 System.out.println("------------------------------------------------------------------------------------");
             }
 
-            showOrderSummery(addSandwich);
+            showOrderSummery(sandwich);
 
             if(numberOfSandwich > 1){
                 System.out.println("----------------------------------------------------------------------------------");
-                System.out.printf("                       Total for Order %d is $%.2f", i, addSandwich.getPrice());
+                System.out.printf("                       Total for Order %d is $%.2f", i, sandwich.getPrice());
                 System.out.println("\n----------------------------------------------------------------------------------");
             }
+
+            boolean wantsToSaveOrder = Console.PromptForYesNo("Do you want to save your order? ");
+            String saveOrder = checkout.saveOrder(wantsToSaveOrder, sandwich);
+            System.out.println( "                     " + saveOrder);
         }
         System.out.println("----------------------------------------------------------------------------------");
         System.out.println("                       Your Total for the Order is $" + totalOrderCost);
-        System.out.println("----------------------------------------------------------------------------------");
-
-        boolean wantsToSaveOrder = Console.PromptForYesNo("Do you want to save your order? ");
-        String saveOrder = checkout.saveOrder(wantsToSaveOrder, addSandwich);
-
-        System.out.println("\n----------------------------------------------------------------------------------");
-        System.out.println( "                     " + saveOrder);
         System.out.println("----------------------------------------------------------------------------------");
     }
 
@@ -157,7 +156,7 @@ public class SandwichInterface {
         return userChoice;
     }
 
-    public ToppingSelection promptForRegularToppings(){
+    public MenuItem.ToppingSelection promptForRegularToppings(){
         List<String> normalToppings;
         List<String> selectedToppings = new ArrayList<>();
 
@@ -225,10 +224,10 @@ public class SandwichInterface {
             }
             addMoreToppings = Console.PromptForYesNo("Do you want to add more toppings?");
         }while(addMoreToppings);
-        return new ToppingSelection(selectedToppings, new ArrayList<>(), false, false);
+        return new MenuItem.ToppingSelection(selectedToppings, new ArrayList<>(), false, false);
     }
 
-    public ToppingSelection promptForMeatType(){
+    public MenuItem.ToppingSelection promptForMeatType(){
         List<String> meatToppings = new ArrayList<>();
         boolean wantMeat = Console.PromptForYesNo("Do you want Meat on your Sandwich?");
         boolean extraMeat = false;
@@ -291,10 +290,10 @@ public class SandwichInterface {
             }while(addMoreMeat);
             extraMeat = Console.PromptForYesNo("Do you want extra Meat?");
         }
-        return new ToppingSelection(new ArrayList<>(), meatToppings, extraMeat, false);
+        return new MenuItem.ToppingSelection(new ArrayList<>(), meatToppings, extraMeat, false);
     }
 
-    public ToppingSelection promptForCheeseType(){
+    public MenuItem.ToppingSelection promptForCheeseType(){
         List<String> cheeseToppings = new ArrayList<>();
         boolean wantCheese = Console.PromptForYesNo("Do you want Cheese on your Sandwich?");
         boolean extraCheese = false;
@@ -349,10 +348,10 @@ public class SandwichInterface {
             }while(addMoreToppings);
             extraCheese = Console.PromptForYesNo("Do you want extra Cheese?");
         }
-        return new ToppingSelection(new ArrayList<>(), cheeseToppings, false, extraCheese);
+        return new MenuItem.ToppingSelection(new ArrayList<>(), cheeseToppings, false, extraCheese);
     }
 
-    public ToppingSelection promptForSides(){
+    public MenuItem.ToppingSelection promptForSides(){
         List<String> sidesToppings = new ArrayList<>();
         boolean wantsSides = Console.PromptForYesNo("\nDo you wants Sauce on the side?");
 
@@ -418,7 +417,7 @@ public class SandwichInterface {
                 addMoreSides = Console.PromptForYesNo("Do you want to add more sides?");
             }while(addMoreSides);
         }
-        return new ToppingSelection(sidesToppings, new ArrayList<>(), false, false);
+        return new MenuItem.ToppingSelection(sidesToppings, new ArrayList<>(), false, false);
     }
 
     public double calculateCost(int sandwichSize, List<String> meatToppings, List<String> cheeseToppings, boolean extraMeat, boolean extraCheese){
@@ -466,13 +465,13 @@ public class SandwichInterface {
         return totalCost;
     }
 
-    private void showOrderSummery(AddSandwich addSandwich) {
-        System.out.println("                            Sandwich size: " + addSandwich.getSize() + " inches");
-        System.out.println("                            Bread Type: " + addSandwich.getBreadType());
-        System.out.println("                            Bread Toasted: " + (addSandwich.isToasted() ? "Yes" : "No"));
-        System.out.println("                            Regular toppings: " + formtToppings(addSandwich.getRegularToppings()));
-        System.out.println("                            Meat toppings: " + formtToppings(addSandwich.getMeatToppings()));
-        System.out.println("                            Cheese toppings: " + formtToppings(addSandwich.getCheeseToppings()));
+    private void showOrderSummery(Sandwich sandwich) {
+        System.out.println("                            Sandwich size: " + sandwich.getSize() + " inches");
+        System.out.println("                            Bread Type: " + sandwich.getBreadType());
+        System.out.println("                            Bread Toasted: " + (sandwich.isToasted() ? "Yes" : "No"));
+        System.out.println("                            Regular toppings: " + formtToppings(sandwich.getRegularToppings()));
+        System.out.println("                            Meat toppings: " + formtToppings(sandwich.getMeatToppings()));
+        System.out.println("                            Cheese toppings: " + formtToppings(sandwich.getCheeseToppings()));
     }
 
     private String formtToppings(List<String> toppings){

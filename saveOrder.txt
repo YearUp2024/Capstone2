@@ -2,3 +2,7 @@ customer name|size|bread|bread toasted|regular toppings|meat toppings|cheese top
 Iftekar Hossain|8|white|No|onions, mushrooms, au jus|None|american, provolone|10.6
 James|4|white|No|lettuce|None|None|5.5
 Tom|4|white|Yes|lettuce, pickles, mayo|steak|None|7.0
+Iftekar Hossain|8|white|Yes|peppers, onions|steak|None|9.0
+Tom|8|white|No|peppers|steak|american|10.5
+Iftkear Hossain|4|white|No|lettuce|None|None|5.5
+Iftekar Hossain|8|white|No|lettuce|None|None|7.0
