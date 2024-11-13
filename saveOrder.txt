@@ -1,0 +1,2 @@
+size|bread|bread toasted|regular toppings|meat toppings|cheese toppings|total
+4|white|No|lettuce, mayo|steak|american|8.05

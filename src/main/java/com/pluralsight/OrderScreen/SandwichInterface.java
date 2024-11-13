@@ -22,6 +22,8 @@ public class SandwichInterface {
     private static final double extraCheeseCost12 = 0.90;
 
     ToppingsOptions toppingsOptions = new ToppingsOptions();
+    Checkout checkout = new Checkout();
+    AddSandwich addSandwich;
 
     public void orderSandwich(){
         int numberOfSandwich = Console.PromptForInt("How many sandwiches do you want? ");
@@ -57,7 +59,7 @@ public class SandwichInterface {
             double totalCost = calculateCost(sandwichSize, meatToppings, cheeseToppings, extraMeat, extraCheese);
             totalOrderCost += totalCost;
 
-            AddSandwich addSandwich = new AddSandwich("Custom Sandwich", totalCost, 1, sandwichSize, breadType, toasted, regularToppings, meatToppings, cheeseToppings);
+            addSandwich = new AddSandwich("Custom Sandwich", totalCost, 1, sandwichSize, breadType, toasted, regularToppings, meatToppings, cheeseToppings);
 
             if(numberOfSandwich > 1){
                 System.out.println("------------------------------------------------------------------------------------");
@@ -65,7 +67,7 @@ public class SandwichInterface {
                 System.out.println("------------------------------------------------------------------------------------");
             }else{
                 System.out.println("------------------------------------------------------------------------------------");
-                System.out.println("                                     Your Order:                                  ");
+                System.out.println("                               Your Order:                                  ");
                 System.out.println("------------------------------------------------------------------------------------");
             }
 
@@ -75,15 +77,14 @@ public class SandwichInterface {
                 System.out.println("----------------------------------------------------------------------------------");
                 System.out.printf("                       Total for Order %d is $%.2f", i, addSandwich.getPrice());
                 System.out.println("\n----------------------------------------------------------------------------------");
-            }else{
-                System.out.println("----------------------------------------------------------------------------------");
-                System.out.println("                            Your Total for this Order is $" + addSandwich.getPrice() + "                         ");
-                System.out.println("----------------------------------------------------------------------------------");
             }
         }
         System.out.println("----------------------------------------------------------------------------------");
         System.out.println("                       Your Total for the Order is $" + totalOrderCost);
         System.out.println("----------------------------------------------------------------------------------");
+
+        boolean wantsToSaveOrder = Console.PromptForYesNo("Do you want to save your order? ");
+        String saveOrder = checkout.saveOrder(wantsToSaveOrder, addSandwich);
     }
 
     private int promptForSandwichSize() {
