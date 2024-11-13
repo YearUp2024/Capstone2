@@ -1,6 +1,6 @@
 package com.pluralsight.OrderScreen;
 
-import com.pluralsight.BusinessEntities.MenuItem;
+import com.pluralsight.BusinessEntities.ToppingSelection;
 import com.pluralsight.BusinessEntities.Sandwich;
 import com.pluralsight.Console;
 import com.pluralsight.Toppings.ToppingsOptions;
@@ -40,20 +40,20 @@ public class SandwichInterface {
 
             System.out.println();
 
-            MenuItem.ToppingSelection regularToppingsSelection = promptForRegularToppings();
+            ToppingSelection regularToppingsSelection = promptForRegularToppings();
             List<String> regularToppings = regularToppingsSelection.getRegularToppings();
             System.out.println();
 
-            MenuItem.ToppingSelection meatSelection = promptForMeatType();
+            ToppingSelection meatSelection = promptForMeatType();
             List<String> meatToppings = meatSelection.getPremiumToppings();
             boolean extraMeat = meatSelection.isExtraMeat();
             System.out.println();
 
-            MenuItem.ToppingSelection cheeseSelection = promptForCheeseType();
+            ToppingSelection cheeseSelection = promptForCheeseType();
             List<String> cheeseToppings = cheeseSelection.getPremiumToppings();
             boolean extraCheese = cheeseSelection.isExtraCheese();
 
-            MenuItem.ToppingSelection sidesToppingsSelection = promptForSides();
+            ToppingSelection sidesToppingsSelection = promptForSides();
             List<String> sidesToppings = sidesToppingsSelection.getRegularToppings();
             regularToppings.addAll(sidesToppings);
             System.out.println();
@@ -81,7 +81,7 @@ public class SandwichInterface {
                 System.out.println("\n----------------------------------------------------------------------------------");
             }
 
-            boolean wantsToSaveOrder = Console.PromptForYesNo("Do you want to save your order? ");
+            boolean wantsToSaveOrder = Console.PromptForYesNo("\nDo you want to save your order? ");
             String saveOrder = checkout.saveOrder(wantsToSaveOrder, sandwich);
             System.out.println( "                     " + saveOrder);
         }
@@ -156,7 +156,7 @@ public class SandwichInterface {
         return userChoice;
     }
 
-    public MenuItem.ToppingSelection promptForRegularToppings(){
+    public ToppingSelection promptForRegularToppings(){
         List<String> normalToppings;
         List<String> selectedToppings = new ArrayList<>();
 
@@ -224,10 +224,10 @@ public class SandwichInterface {
             }
             addMoreToppings = Console.PromptForYesNo("Do you want to add more toppings?");
         }while(addMoreToppings);
-        return new MenuItem.ToppingSelection(selectedToppings, new ArrayList<>(), false, false);
+        return new ToppingSelection(selectedToppings, new ArrayList<>(), false, false);
     }
 
-    public MenuItem.ToppingSelection promptForMeatType(){
+    public ToppingSelection promptForMeatType(){
         List<String> meatToppings = new ArrayList<>();
         boolean wantMeat = Console.PromptForYesNo("Do you want Meat on your Sandwich?");
         boolean extraMeat = false;
@@ -290,10 +290,10 @@ public class SandwichInterface {
             }while(addMoreMeat);
             extraMeat = Console.PromptForYesNo("Do you want extra Meat?");
         }
-        return new MenuItem.ToppingSelection(new ArrayList<>(), meatToppings, extraMeat, false);
+        return new ToppingSelection(new ArrayList<>(), meatToppings, extraMeat, false);
     }
 
-    public MenuItem.ToppingSelection promptForCheeseType(){
+    public ToppingSelection promptForCheeseType(){
         List<String> cheeseToppings = new ArrayList<>();
         boolean wantCheese = Console.PromptForYesNo("Do you want Cheese on your Sandwich?");
         boolean extraCheese = false;
@@ -348,10 +348,10 @@ public class SandwichInterface {
             }while(addMoreToppings);
             extraCheese = Console.PromptForYesNo("Do you want extra Cheese?");
         }
-        return new MenuItem.ToppingSelection(new ArrayList<>(), cheeseToppings, false, extraCheese);
+        return new ToppingSelection(new ArrayList<>(), cheeseToppings, false, extraCheese);
     }
 
-    public MenuItem.ToppingSelection promptForSides(){
+    public ToppingSelection promptForSides(){
         List<String> sidesToppings = new ArrayList<>();
         boolean wantsSides = Console.PromptForYesNo("\nDo you wants Sauce on the side?");
 
@@ -417,7 +417,7 @@ public class SandwichInterface {
                 addMoreSides = Console.PromptForYesNo("Do you want to add more sides?");
             }while(addMoreSides);
         }
-        return new MenuItem.ToppingSelection(sidesToppings, new ArrayList<>(), false, false);
+        return new ToppingSelection(sidesToppings, new ArrayList<>(), false, false);
     }
 
     public double calculateCost(int sandwichSize, List<String> meatToppings, List<String> cheeseToppings, boolean extraMeat, boolean extraCheese){

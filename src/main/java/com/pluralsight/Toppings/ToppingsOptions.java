@@ -121,4 +121,25 @@ public class ToppingsOptions {
 
         return regularSauces;
     }
+
+    public List<String> drinksOptions(){
+        List<String> drinks = new ArrayList<>();
+        drinks.add("pepsi");
+        drinks.add("sprite");
+        drinks.add("red bull");
+        drinks.add("gatorate");
+        drinks.add("arizona");
+        drinks.add("cocacola");
+        drinks.add("coke");
+
+        System.out.println("[1] - Pepsi");
+        System.out.println("[2] - Sprite");
+        System.out.println("[3] - Red Bull");
+        System.out.println("[4] - Gatorate");
+        System.out.println("[5] - Arizona");
+        System.out.println("[6] - CocaCola");
+        System.out.println("[7] - Coke");
+
+        return drinks;
+    }
 }

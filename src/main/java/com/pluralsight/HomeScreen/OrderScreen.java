@@ -14,6 +14,7 @@ public class OrderScreen {
     DrinksInterface drinks = new DrinksInterface();
     Checkout checkout = new Checkout();
     Sandwich sandwich;
+    DrinksInterface drinksInterface = new DrinksInterface();
 
     public void userOrder() {
         //List<String> menuOptions;
@@ -66,7 +67,7 @@ public class OrderScreen {
                     System.out.println();
                     break;
                 case "drink":
-                    System.out.println("Drinks");
+                    drinksInterface.addDrinks();
                     System.out.println();
                     break;
                 case "chips":
