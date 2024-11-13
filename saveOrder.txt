@@ -1,2 +1,4 @@
 customer name|size|bread|bread toasted|regular toppings|meat toppings|cheese toppings|total|drink name|drink size|drink price
 alkd|4|white|No|lettuce|None|None|5.5
+aldh|4|white|No|lettuce|None|None|5.5|pepsi|1|0.0
+jahd|4|white|No|lettuce|None|None|5.5|pepsi|small|2.0
