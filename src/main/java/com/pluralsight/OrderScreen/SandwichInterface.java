@@ -25,11 +25,29 @@ public class SandwichInterface {
 
     ToppingsOptions toppingsOptions = new ToppingsOptions();
     Checkout checkout = new Checkout();
-    Sandwich sandwich;
 
-    public void orderSandwich(){
+    private int promptForSandwichSize() {
+        int sandwichSize = 0;
+        do{
+            System.out.println("\nWhat size Sandwich do you want?");
+            toppingsOptions.sandwichSizeType();
+
+            try{
+                sandwichSize = Console.PromptForInt("Enter your choice: ");
+                if(sandwichSize != 4 && sandwichSize != 8 && sandwichSize != 12){
+                    System.out.println("\nPlease enter a valid size: 4, 8, or 12.");
+                }
+            }catch(Exception e){
+                System.out.println("\nPlease enter a valid size: 4, 8, or 12.");
+            }
+        }while(sandwichSize != 4 && sandwichSize != 8 && sandwichSize != 12);
+        return sandwichSize;
+    }
+
+    public List<Sandwich> orderSandwich(){
         int numberOfSandwich = Console.PromptForInt("How many sandwiches do you want? ");
         double totalOrderCost = 0.0;
+        List<Sandwich> sandwiches = new ArrayList<>();
 
         for(int i = 1; i <= numberOfSandwich; i++){
             int sandwichSize = promptForSandwichSize();
@@ -61,7 +79,8 @@ public class SandwichInterface {
             double totalCost = calculateCost(sandwichSize, meatToppings, cheeseToppings, extraMeat, extraCheese);
             totalOrderCost += totalCost;
 
-            sandwich = new Sandwich("Custom Sandwich", totalCost, 1, sandwichSize, breadType, toasted, regularToppings, meatToppings, cheeseToppings);
+            Sandwich sandwich = new Sandwich("Custom Sandwich", totalCost, 1, sandwichSize, breadType, toasted, regularToppings, meatToppings, cheeseToppings);
+            sandwiches.add(sandwich);
 
             if(numberOfSandwich > 1){
                 System.out.println("------------------------------------------------------------------------------------");
@@ -88,24 +107,8 @@ public class SandwichInterface {
         System.out.println("----------------------------------------------------------------------------------");
         System.out.println("                       Your Total for the Order is $" + totalOrderCost);
         System.out.println("----------------------------------------------------------------------------------");
-    }
 
-    private int promptForSandwichSize() {
-        int sandwichSize = 0;
-        do{
-            System.out.println("\nWhat size Sandwich do you want?");
-            toppingsOptions.sandwichSizeType();
-
-            try{
-                sandwichSize = Console.PromptForInt("Enter your choice: ");
-                if(sandwichSize != 4 && sandwichSize != 8 && sandwichSize != 12){
-                    System.out.println("\nPlease enter a valid size: 4, 8, or 12.");
-                }
-            }catch(Exception e){
-                System.out.println("\nPlease enter a valid size: 4, 8, or 12.");
-            }
-        }while(sandwichSize != 4 && sandwichSize != 8 && sandwichSize != 12);
-        return sandwichSize;
+        return sandwiches;
     }
 
     public String promptForBreadType(){

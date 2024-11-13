@@ -1,35 +1,36 @@
 package com.pluralsight.HomeScreen;
 
+import com.pluralsight.BusinessEntities.SaveOrder;
 import com.pluralsight.Console;
 import com.pluralsight.BusinessEntities.Sandwich;
-import com.pluralsight.OrderScreen.Checkout;
-import com.pluralsight.OrderScreen.DrinksInterface;
-import com.pluralsight.OrderScreen.SandwichInterface;
+import com.pluralsight.OrderScreen.*;
 import com.pluralsight.Toppings.ToppingsOptions;
+
+import java.util.List;
 
 
 public class OrderScreen {
     SandwichInterface sandwichInterface = new SandwichInterface();
     ToppingsOptions toppingsOptions = new ToppingsOptions();
-    DrinksInterface drinks = new DrinksInterface();
-    Checkout checkout = new Checkout();
-    Sandwich sandwich;
     DrinksInterface drinksInterface = new DrinksInterface();
+    SaveOrder saveOrder = new SaveOrder();
+    Order order = new Order();
 
     public void userOrder() {
-        //List<String> menuOptions;
-        String order = "";
+        String orderChoice = "";
 
         do {
             int userChoice = 0;
             boolean validInput = false;
+
             while(!validInput){
                 System.out.println("Please choose from the options: ");
                 toppingsOptions.mainMenue();
 
                 try{
                     userChoice = Console.PromptForInt("Please enter your Choice: ");
-                    if(userChoice >= 1 && userChoice <= 5){
+
+                    if(userChoice >= 1 && userChoice <= toppingsOptions.drinksOptions().size()){
                         validInput = true;
                     }
                 }catch(Exception e){
@@ -41,19 +42,19 @@ public class OrderScreen {
 
             switch(userChoice){
                 case 1:
-                    order = "sandwich";
+                    orderChoice = "sandwich";
                     break;
                 case 2:
-                    order = "drink";
+                    orderChoice = "drink";
                     break;
                 case 3:
-                    order = "chips";
+                    orderChoice = "chips";
                     break;
                 case 4:
-                    order = "checkout";
+                    orderChoice = "checkout";
                     break;
                 case 5:
-                    order = "cancel order";
+                    orderChoice = "cancel order";
                     break;
                 default:
                     System.out.println("Your choice is incorrect.");
@@ -61,13 +62,17 @@ public class OrderScreen {
             }
             System.out.println();
 
-            switch (order) {
+            switch (orderChoice) {
                 case "sandwich":
-                    sandwichInterface.orderSandwich();
+                    List<Sandwich> sandwiches = sandwichInterface.orderSandwich();
+                    for(Sandwich sandwich : sandwiches){
+                        order.addSandwich(sandwich);
+                    }
                     System.out.println();
                     break;
                 case "drink":
-                    drinksInterface.addDrinks();
+                    Drink drink = drinksInterface.orderDrinks();
+                    order.addDrink(drink);
                     System.out.println();
                     break;
                 case "chips":
@@ -75,10 +80,8 @@ public class OrderScreen {
                     System.out.println();
                     break;
                 case "checkout":
-                    if(sandwich != null){
-                        boolean wantsToSaveOrder = Console.PromptForYesNo("Do you want to save your order? ");
-                        String saveOrder = checkout.saveOrder(wantsToSaveOrder, sandwich);
-                    }
+                    boolean wantsToSaveOrder = Console.PromptForYesNo("Do you want to save this order: ");
+                    String saveOrderMessage = saveOrder.saveOrder(wantsToSaveOrder, order);
                     break;
                 case "cancel order":
                     System.out.println("Your order is canceled.");
@@ -87,6 +90,6 @@ public class OrderScreen {
                     System.out.println("Your choice is incorrect.");
                     break;
             }
-        } while (!order.equalsIgnoreCase("cancel order"));
+        } while (!orderChoice.equalsIgnoreCase("cancel order"));
     }
 }

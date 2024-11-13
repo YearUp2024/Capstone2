@@ -13,11 +13,12 @@ public class DrinksInterface {
 
     ToppingsOptions toppingsOptions = new ToppingsOptions();
 
-    public void addDrinks(){
+    public Drink orderDrinks(){
         List<String> drinkType;
-        List<String> selectedDrinks = new ArrayList<>();
+        String size = "";
+        double price = 0.0;
+        String drinkName = "";
 
-        String userChoice = "";
         boolean addMoreDrinks;
         do{
             int userOption = 0;
@@ -28,6 +29,8 @@ public class DrinksInterface {
                     System.out.println("Which drink do you want?");
                     drinkType = toppingsOptions.drinksOptions();
                     userOption = Console.PromptForInt("Enter your choice: ");
+
+                    size = Console.PromptForString("What size do you want? (Small, Medium, Large) ");
 
                     if(userOption >= 1 && userOption <= drinkType.size()){
                         validInput = true;
@@ -43,37 +46,39 @@ public class DrinksInterface {
 
             switch(userOption){
                 case 1:
-                    userChoice = "pepsi";
-                    selectedDrinks.add(userChoice);
+                    drinkName = "pepsi";
                     break;
                 case 2:
-                    userChoice = "sprite";
-                    selectedDrinks.add(userChoice);
+                    drinkName = "sprite";
                     break;
                 case 3:
-                    userChoice = "red bull";
-                    selectedDrinks.add(userChoice);
+                    drinkName = "red bull";
                     break;
                 case 4:
-                    userChoice = "gatorate";
-                    selectedDrinks.add(userChoice);
+                    drinkName = "gatorade";
                     break;
                 case 5:
-                    userChoice = "arizona";
-                    selectedDrinks.add(userChoice);
+                    drinkName = "arizona";
                     break;
                 case 6:
-                    userChoice = "cocacola";
-                    selectedDrinks.add(userChoice);
+                    drinkName = "coca cola";
                     break;
                 case 7:
-                    userChoice = "coke";
-                    selectedDrinks.add(userChoice);
+                    drinkName = "coke";
                     break;
                 default:
                     System.out.println("Your choice is incorrect.");
             }
+            if(size.equalsIgnoreCase("small")){
+                price = 2.0;
+            }else if(size.equalsIgnoreCase("medium")){
+                price = 2.50;
+            }
+            if(size.equalsIgnoreCase("Larger")){
+                price = 3.0;
+            }
             addMoreDrinks = Console.PromptForYesNo("Do you want to add more Drinks?");
         }while(addMoreDrinks);
+        return new Drink(drinkName, size, price);
     }
 }

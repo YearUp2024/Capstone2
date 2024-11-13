@@ -127,17 +127,17 @@ public class ToppingsOptions {
         drinks.add("pepsi");
         drinks.add("sprite");
         drinks.add("red bull");
-        drinks.add("gatorate");
+        drinks.add("gatorade");
         drinks.add("arizona");
-        drinks.add("cocacola");
+        drinks.add("coca cola");
         drinks.add("coke");
 
         System.out.println("[1] - Pepsi");
         System.out.println("[2] - Sprite");
         System.out.println("[3] - Red Bull");
-        System.out.println("[4] - Gatorate");
+        System.out.println("[4] - Gatorade");
         System.out.println("[5] - Arizona");
-        System.out.println("[6] - CocaCola");
+        System.out.println("[6] - Coca Cola");
         System.out.println("[7] - Coke");
 
         return drinks;

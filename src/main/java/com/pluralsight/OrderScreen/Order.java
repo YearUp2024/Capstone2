@@ -1,31 +1,31 @@
 package com.pluralsight.OrderScreen;
 
 import com.pluralsight.BusinessEntities.Sandwich;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
     private List<Sandwich> sandwiches;
-    private List<DrinksInterface> drinks;
+    private List<Drink> drinks;
 
-    public Order(List<Sandwich> sandwiches, List<DrinksInterface> drinks) {
-        this.sandwiches = sandwiches;
-        this.drinks = drinks;
+    public Order() {
+        this.sandwiches = new ArrayList<>();
+        this.drinks = new ArrayList<>();
     }
 
     public List<Sandwich> getSandwiches() {
         return sandwiches;
     }
 
-    public void addSandwiches(List<Sandwich> sandwiches) {
-        this.sandwiches = sandwiches;
+    public void addSandwich(Sandwich sandwich) {
+        this.sandwiches.add(sandwich);
     }
 
-    public List<DrinksInterface> getDrinks() {
+    public List<Drink> getDrinks() {
         return drinks;
     }
 
-    public void addDrinks(List<DrinksInterface> drinks) {
-        this.drinks = drinks;
+    public void addDrink(Drink drink) {
+        this.drinks.add(drink);
     }
 }
