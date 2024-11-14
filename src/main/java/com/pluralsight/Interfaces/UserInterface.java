@@ -1,6 +1,7 @@
-package com.pluralsight.HomeScreen;
+package com.pluralsight.Interfaces;
 
 import com.pluralsight.Console;
+import com.pluralsight.HomeScreen.OrderScreen;
 
 public class UserInterface {
     OrderScreen orderScreen = new OrderScreen();

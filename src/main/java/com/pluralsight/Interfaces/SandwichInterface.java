@@ -1,8 +1,10 @@
-package com.pluralsight.OrderScreen;
+package com.pluralsight.Interfaces;
 
 import com.pluralsight.BusinessEntities.ToppingSelection;
 import com.pluralsight.BusinessEntities.Sandwich;
 import com.pluralsight.Console;
+import com.pluralsight.OrderScreen.Checkout;
+import com.pluralsight.OrderScreen.Drink;
 import com.pluralsight.Toppings.ToppingsOptions;
 import java.util.*;
 
