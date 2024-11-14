@@ -3,6 +3,7 @@ package com.pluralsight.HomeScreen;
 //import com.pluralsight.BusinessEntities.SaveOrder;
 import com.pluralsight.Console;
 import com.pluralsight.BusinessEntities.Sandwich;
+import com.pluralsight.Interfaces.ChipsInterface;
 import com.pluralsight.Interfaces.DrinksInterface;
 import com.pluralsight.Interfaces.SandwichInterface;
 import com.pluralsight.OrderScreen.*;
@@ -10,10 +11,12 @@ import com.pluralsight.Toppings.ToppingsOptions;
 import java.util.List;
 
 
+
 public class OrderScreen {
     SandwichInterface sandwichInterface = new SandwichInterface();
     ToppingsOptions toppingsOptions = new ToppingsOptions();
     DrinksInterface drinksInterface = new DrinksInterface();
+    ChipsInterface chipsInterface = new ChipsInterface();
     //SaveOrder saveOrder = new SaveOrder();
     Order order = new Order();
 
@@ -77,7 +80,8 @@ public class OrderScreen {
                     System.out.println();
                     break;
                 case "chips":
-                    System.out.println("Add Chips");
+                    Chips chips = chipsInterface.buyChipsOnly();
+                    order.addChips(chips);
                     System.out.println();
                     break;
                 case "checkout":

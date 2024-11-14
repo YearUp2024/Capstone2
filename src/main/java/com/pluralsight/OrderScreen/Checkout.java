@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.util.List;
 
 public class Checkout {
-    public String saveOrder(boolean wantsToSaveOrder, Sandwich sandwich, Drink drink) {
+    public String saveOrder(boolean wantsToSaveOrder, Sandwich sandwich, Drink drink, Chips chips) {
         if (wantsToSaveOrder) {
             try (FileWriter fileWriter = new FileWriter("saveOrder.txt", true)) {
                 String customerName = Console.PromptForString("What is your name: ");
@@ -22,7 +22,9 @@ public class Checkout {
                 fileWriter.write(String.valueOf(sandwich.getPrice()) + "|");
                 fileWriter.write(drink.getName() + "|");
                 fileWriter.write(drink.getSize() + "|");
-                fileWriter.write(drink.getPrice() + "\n");
+                fileWriter.write(drink.getPrice() + "|");
+                fileWriter.write(chips.getName() + "|");
+                fileWriter.write(chips.getPrice() + "\n");
                 return "Your order was saved successfully!";
             } catch (Exception e) {
                 return "An error occurred while saving the order.";

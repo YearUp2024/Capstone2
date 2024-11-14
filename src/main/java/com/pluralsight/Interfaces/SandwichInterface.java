@@ -91,7 +91,7 @@ public class SandwichInterface {
             }
 
             boolean wantToAddChips = Console.PromptForYesNo("Do you want to add chips to your order?");
-            Chips chips;
+            Chips chips = null;
             double chipCost = 0.0;
             if(wantToAddChips){
                 ChipsInterface chipsInterface = new ChipsInterface();
@@ -124,7 +124,7 @@ public class SandwichInterface {
             }
 
             boolean wantsToSaveOrder = Console.PromptForYesNo("\nDo you want to save your order? ");
-            String saveOrder = checkout.saveOrder(wantsToSaveOrder, sandwich, drink);
+            String saveOrder = checkout.saveOrder(wantsToSaveOrder, sandwich, drink, chips);
             System.out.println("----------------------------------------------------------------------------------");
             System.out.println("                     " + saveOrder);
             System.out.println("----------------------------------------------------------------------------------");

@@ -7,10 +7,12 @@ import java.util.List;
 public class Order {
     private List<Sandwich> sandwiches;
     private List<Drink> drinks;
+    private List<Chips> chips;
 
     public Order() {
         this.sandwiches = new ArrayList<>();
         this.drinks = new ArrayList<>();
+        this.chips = new ArrayList<>();
     }
 
     public List<Sandwich> getSandwiches() {
@@ -25,7 +27,15 @@ public class Order {
         return drinks;
     }
 
+    public List<Drink> getChips() {
+        return drinks;
+    }
+
     public void addDrink(Drink drink) {
         this.drinks.add(drink);
+    }
+
+    public void addChips(Chips chips) {
+        this.chips.add(chips);
     }
 }
