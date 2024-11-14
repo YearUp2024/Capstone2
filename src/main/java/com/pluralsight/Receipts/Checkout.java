@@ -18,7 +18,7 @@ public class Checkout {
         String fileName = "receipts/" + timestamp + ".txt";
         double totalCost = 0.0;
 
-        File receiptsFolder = new File("/Users/iftekarhossain/Documents/pluralsight/java-development/Capstones/SwenswitchShop/src/main/java/com/pluralsight/Receipts");
+        File receiptsFolder = new File("receipts");
         if (!receiptsFolder.exists()) {
             receiptsFolder.mkdir();
         }

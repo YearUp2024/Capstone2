@@ -1,0 +1,21 @@
+             Your Receipt
+Date and Time: 2024-11-14 13:27:19
+-------------------------------------------------------
+Sandwich: Custom Sandwich
+Size: 4 inches
+Bread Type: white
+Toasted: No
+Regular Toppings: lettuce
+Meat Toppings: None
+Cheese Toppings: None
+-------------------------------------------------------
+Price: 9.0
+-------------------------------------------------------
+
+Drink: pepsi
+Size: 1
+-------------------------------------------------------
+Price: 2.0
+-------------------------------------------------------
+
+Total Cost: 11.0
