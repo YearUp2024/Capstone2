@@ -4,6 +4,7 @@ import com.pluralsight.BusinessEntities.ToppingSelection;
 import com.pluralsight.BusinessEntities.Sandwich;
 import com.pluralsight.Console;
 import com.pluralsight.OrderScreen.Checkout;
+import com.pluralsight.OrderScreen.Chips;
 import com.pluralsight.OrderScreen.Drink;
 import com.pluralsight.Toppings.ToppingsOptions;
 import java.util.*;
@@ -88,7 +89,17 @@ public class SandwichInterface {
                 drink = drinksInterface.orderDrinks();
                 drinkCost = drink.getPrice();
             }
-            double totalCost = sandwichCost + drinkCost;
+
+            boolean wantToAddChips = Console.PromptForYesNo("Do you want to add chips to your order?");
+            Chips chips;
+            double chipCost = 0.0;
+            if(wantToAddChips){
+                ChipsInterface chipsInterface = new ChipsInterface();
+                chips = chipsInterface.orderChips();
+                chipCost = chips.getPrice();
+            }
+
+            double totalCost = sandwichCost + drinkCost + chipCost;
             totalOrderCost += totalCost;
 
             Sandwich sandwich = new Sandwich("Custom Sandwich", totalCost, 1, sandwichSize, breadType, toasted, regularToppings, meatToppings, cheeseToppings);
