@@ -1,9 +1,6 @@
-customer name|size|bread|bread toasted|regular toppings|meat toppings|cheese toppings|total|drink name|drink size|drink price
-alkd|4|white|No|lettuce|None|None|5.5
-aldh|4|white|No|lettuce|None|None|5.5|pepsi|1|0.0
-jahd|4|white|No|lettuce|None|None|5.5|pepsi|small|2.0
-alkhd|4|white|No|lettuce|None|None|5.5|pepsi|1|2.0
-owiurw|8|white|No|lettuce|None|None|7.0|sprite|2|2.5
-Iftekar|4|white|No|lettuce, mayo|steak|american|9.55|pepsi|1|2.0
-James|4|white|No|lettuce, mayo|steak|american|7.55|alkjdh|4|white|No|lettuce|None|None|7.5|pepsi|1|2.0
-James|4|white|No|lettuce|None|None|7.5|pepsi|1|2.0
+customer name|size|bread|bread toasted|regular toppings|meat toppings|cheese toppings|total|drink name|drink size|drink price|chips name|chips price
+Iftekar|4|white|Yes|lettuce, peppers, ketchup|steak|american|11.25|arizona|1|2.0|lays|1.5
+James|4|white|No|lettuce|None|None|5.5|
+Iftekar|4|white|No|lettuce|None|None|5.5|
+Iftekar|4|white|No|lettuce|None|None|5.5|
+James|4|white|Yes|lettuce, mayo|steak|american|10.75|pepsi|1|2.0|doritos|1.5

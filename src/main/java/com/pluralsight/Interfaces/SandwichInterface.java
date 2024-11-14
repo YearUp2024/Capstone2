@@ -3,7 +3,7 @@ package com.pluralsight.Interfaces;
 import com.pluralsight.BusinessEntities.ToppingSelection;
 import com.pluralsight.BusinessEntities.Sandwich;
 import com.pluralsight.Console;
-import com.pluralsight.OrderScreen.Checkout;
+import com.pluralsight.OrderScreen.SaveOrder;
 import com.pluralsight.OrderScreen.Chips;
 import com.pluralsight.OrderScreen.Drink;
 import com.pluralsight.Toppings.ToppingsOptions;
@@ -27,7 +27,7 @@ public class SandwichInterface {
     private static final double extraCheeseCost12 = 0.90;
 
     ToppingsOptions toppingsOptions = new ToppingsOptions();
-    Checkout checkout = new Checkout();
+    SaveOrder saveOrder = new SaveOrder();
 
     private int promptForSandwichSize() {
         int sandwichSize = 0;
@@ -124,7 +124,7 @@ public class SandwichInterface {
             }
 
             boolean wantsToSaveOrder = Console.PromptForYesNo("\nDo you want to save your order? ");
-            String saveOrder = checkout.saveOrder(wantsToSaveOrder, sandwich, drink, chips);
+            String saveOrder = this.saveOrder.saveOrder(wantsToSaveOrder, sandwich, drink, chips);
             System.out.println("----------------------------------------------------------------------------------");
             System.out.println("                     " + saveOrder);
             System.out.println("----------------------------------------------------------------------------------");

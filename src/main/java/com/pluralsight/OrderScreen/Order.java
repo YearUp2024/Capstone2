@@ -27,8 +27,8 @@ public class Order {
         return drinks;
     }
 
-    public List<Drink> getChips() {
-        return drinks;
+    public List<Chips> getChips() {
+        return chips;
     }
 
     public void addDrink(Drink drink) {
