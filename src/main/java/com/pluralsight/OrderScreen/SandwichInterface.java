@@ -76,15 +76,21 @@ public class SandwichInterface {
             regularToppings.addAll(sidesToppings);
             System.out.println();
 
-            double totalCost = calculateCost(sandwichSize, meatToppings, cheeseToppings, extraMeat, extraCheese);
+            double sandwichCost = calculateCost(sandwichSize, meatToppings, cheeseToppings, extraMeat, extraCheese);
+
+            boolean wantToAddDrink = Console.PromptForYesNo("Do you want to add a drink to your order?");
+            Drink drink = null;
+            double drinkCost = 0.0;
+            if(wantToAddDrink){
+                DrinksInterface drinksInterface = new DrinksInterface();
+                drink = drinksInterface.orderDrinks();
+                drinkCost = drink.getPrice();
+            }
+            double totalCost = sandwichCost + drinkCost;
             totalOrderCost += totalCost;
 
             Sandwich sandwich = new Sandwich("Custom Sandwich", totalCost, 1, sandwichSize, breadType, toasted, regularToppings, meatToppings, cheeseToppings);
             sandwiches.add(sandwich);
-
-            // Prompt for drink
-            DrinksInterface drinksInterface = new DrinksInterface();
-            Drink drink = drinksInterface.orderDrinks();
 
             if (numberOfSandwich > 1) {
                 System.out.println("------------------------------------------------------------------------------------");
@@ -105,8 +111,11 @@ public class SandwichInterface {
             }
 
             boolean wantsToSaveOrder = Console.PromptForYesNo("\nDo you want to save your order? ");
-            String saveOrder = checkout.saveOrder(wantsToSaveOrder, sandwich, drink); // Pass both sandwich and drink
+            String saveOrder = checkout.saveOrder(wantsToSaveOrder, sandwich, drink);
+            System.out.println("----------------------------------------------------------------------------------");
             System.out.println("                     " + saveOrder);
+            System.out.println("----------------------------------------------------------------------------------");
+
         }
         System.out.println("----------------------------------------------------------------------------------");
         System.out.println("                       Your Total for the Order is $" + totalOrderCost);

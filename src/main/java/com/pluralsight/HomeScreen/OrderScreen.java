@@ -5,7 +5,6 @@ import com.pluralsight.Console;
 import com.pluralsight.BusinessEntities.Sandwich;
 import com.pluralsight.OrderScreen.*;
 import com.pluralsight.Toppings.ToppingsOptions;
-
 import java.util.List;
 
 
@@ -23,24 +22,24 @@ public class OrderScreen {
             int userChoice = 0;
             boolean validInput = false;
 
-            while(!validInput){
+            while (!validInput) {
                 System.out.println("Please choose from the options: ");
                 toppingsOptions.mainMenue();
 
-                try{
+                try {
                     userChoice = Console.PromptForInt("Please enter your Choice: ");
 
-                    if(userChoice >= 1 && userChoice <= toppingsOptions.drinksOptions().size()){
+                    if (userChoice >= 1 && userChoice <= 5) {
                         validInput = true;
                     }
-                }catch(Exception e){
+                } catch (Exception e) {
                     System.out.println("\n-------------------------------------------------------------------------------------");
                     System.out.println("            Your input is invalid. Please enter a number between 1 and 5.");
                     System.out.println("-------------------------------------------------------------------------------------\n");
                 }
             }
 
-            switch(userChoice){
+            switch (userChoice) {
                 case 1:
                     orderChoice = "sandwich";
                     break;
@@ -65,7 +64,7 @@ public class OrderScreen {
             switch (orderChoice) {
                 case "sandwich":
                     List<Sandwich> sandwiches = sandwichInterface.orderSandwich();
-                    for(Sandwich sandwich : sandwiches){
+                    for (Sandwich sandwich : sandwiches) {
                         order.addSandwich(sandwich);
                     }
                     System.out.println();
@@ -82,6 +81,7 @@ public class OrderScreen {
                 case "checkout":
                     boolean wantsToSaveOrder = Console.PromptForYesNo("Do you want to save this order: ");
                     String saveOrderMessage = saveOrder.saveOrder(wantsToSaveOrder, order);
+                    System.out.println(saveOrderMessage);
                     break;
                 case "cancel order":
                     System.out.println("Your order is canceled.");

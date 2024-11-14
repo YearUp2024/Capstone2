@@ -2,8 +2,6 @@ package com.pluralsight.OrderScreen;
 
 import com.pluralsight.Toppings.ToppingsOptions;
 import com.pluralsight.Console;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class DrinksInterface {
@@ -15,10 +13,9 @@ public class DrinksInterface {
 
     public Drink orderDrinks(){
         List<String> drinkType;
-        String size = "";
+        int size = 0;
         double price = 0.0;
         String drinkName = "";
-
         boolean addMoreDrinks;
         do{
             int userOption = 0;
@@ -30,7 +27,7 @@ public class DrinksInterface {
                     drinkType = toppingsOptions.drinksOptions();
                     userOption = Console.PromptForInt("Enter your choice: ");
 
-                    size = Console.PromptForString("What size do you want? (Small, Medium, Large) ");
+                    size = Console.PromptForInt("What size do you want? (1: Small, 2: Medium, 3: Large) ");
 
                     if(userOption >= 1 && userOption <= drinkType.size()){
                         validInput = true;
@@ -69,13 +66,13 @@ public class DrinksInterface {
                 default:
                     System.out.println("Your choice is incorrect.");
             }
-            if(size.equalsIgnoreCase("small")){
-                price = 2.0;
-            }else if(size.equalsIgnoreCase("medium")){
-                price = 2.50;
-            }
-            if(size.equalsIgnoreCase("Larger")){
-                price = 3.0;
+
+            if(size == 1){
+                price = small;
+            }else if(size == 2){
+                price = medium;
+            }else if(size == 3){
+                price = large;
             }
             addMoreDrinks = Console.PromptForYesNo("Do you want to add more Drinks?");
         }while(addMoreDrinks);

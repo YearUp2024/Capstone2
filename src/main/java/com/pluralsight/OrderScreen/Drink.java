@@ -2,10 +2,10 @@ package com.pluralsight.OrderScreen;
 
 public class Drink {
     private String name;
-    private String size;
+    private int size;
     private double price;
 
-    public Drink(String name, String size, double price) {
+    public Drink(String name, int size, double price) {
         this.name = name;
         this.size = size;
         this.price = price;
@@ -15,7 +15,7 @@ public class Drink {
         return name;
     }
 
-    public String getSize() {
+    public int getSize() {
         return size;
     }
 
