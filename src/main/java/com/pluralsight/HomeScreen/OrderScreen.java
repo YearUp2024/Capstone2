@@ -70,7 +70,7 @@ public class OrderScreen {
                     System.out.println();
                     break;
                 case "drink":
-                    Drink drink = drinksInterface.orderDrinks();
+                    Drink drink = drinksInterface.buyDrinkOnly();
                     order.addDrink(drink);
                     System.out.println();
                     break;
