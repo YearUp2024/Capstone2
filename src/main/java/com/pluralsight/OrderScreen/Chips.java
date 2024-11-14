@@ -2,9 +2,9 @@ package com.pluralsight.OrderScreen;
 
 public class Chips {
     private String name;
-    private int price;
+    private double price;
 
-    public Chips(String name, int price) {
+    public Chips(String name, double price) {
         this.name = name;
         this.price = price;
     }
@@ -13,7 +13,7 @@ public class Chips {
         return name;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 }

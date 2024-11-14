@@ -142,4 +142,25 @@ public class ToppingsOptions {
 
         return drinks;
     }
+
+    public List<String> chipsOptions(){
+        List<String> chips = new ArrayList<>();
+        chips.add("doritos");
+        chips.add("lays");
+        chips.add("ruffles");
+        chips.add("cheetos");
+        chips.add("takis");
+        chips.add("funyuns");
+        chips.add("pringles");
+
+        System.out.println("[1] - Doritos");
+        System.out.println("[2] - Lays");
+        System.out.println("[3] - Ruffles");
+        System.out.println("[4] - Cheetos");
+        System.out.println("[5] - Takis");
+        System.out.println("[6] - Funyuns");
+        System.out.println("[7] - Pringles");
+
+        return chips;
+    }
 }
