@@ -38,21 +38,43 @@ public class SandwichInterface {
             try{
                 sandwichSize = Console.PromptForInt("Enter your choice: ");
                 if(sandwichSize != 4 && sandwichSize != 8 && sandwichSize != 12){
-                    System.out.println("\nPlease enter a valid size: 4, 8, or 12.");
+                    System.out.println("\n-----------------------------------------------------------");
+                    System.out.println("          Please enter a valid size: 4, 8, or 12.");
+                    System.out.println("-----------------------------------------------------------");
                 }
             }catch(Exception e){
-                System.out.println("\nPlease enter a valid size: 4, 8, or 12.");
+                System.out.println("\n-----------------------------------------------------------");
+                System.out.println("          Please enter a valid size: 4, 8, or 12.");
+                System.out.println("-----------------------------------------------------------");
             }
         }while(sandwichSize != 4 && sandwichSize != 8 && sandwichSize != 12);
         return sandwichSize;
     }
 
     public List<Sandwich> orderSandwich() {
-        int numberOfSandwich = Console.PromptForInt("How many sandwiches do you want? ");
+        int numberOfSandwiches = 0;
+        boolean isValidInput = false;
+
+        do {
+            try {
+                numberOfSandwiches = Console.PromptForInt("How many sandwiches do you want? ");
+
+                if (numberOfSandwiches >= 1) {
+                    isValidInput = true;
+                } else {
+                    System.out.println("Please enter a valid number greater than zero.");
+                }
+            } catch (Exception e) {
+                System.out.println("\n-----------------------------------------------------------");
+                System.out.println("     Your input is invalid. Please enter a number.");
+                System.out.println("-----------------------------------------------------------\n");
+            }
+        } while (!isValidInput);
+
         double totalOrderCost = 0.0;
         List<Sandwich> sandwiches = new ArrayList<>();
 
-        for (int i = 1; i <= numberOfSandwich; i++) {
+        for (int i = 1; i <= numberOfSandwiches; i++) {
             int sandwichSize = promptForSandwichSize();
             System.out.println();
 
@@ -105,19 +127,19 @@ public class SandwichInterface {
             Sandwich sandwich = new Sandwich("Custom Sandwich", totalCost, 1, sandwichSize, breadType, toasted, regularToppings, meatToppings, cheeseToppings);
             sandwiches.add(sandwich);
 
-            if (numberOfSandwich > 1) {
+            if (numberOfSandwiches > 1) {
                 System.out.println("------------------------------------------------------------------------------------");
                 System.out.println("                               Order Number " + i);
                 System.out.println("------------------------------------------------------------------------------------");
             } else {
-                System.out.println("------------------------------------------------------------------------------------");
+                System.out.println("\n------------------------------------------------------------------------------------");
                 System.out.println("                               Your Order:                                  ");
                 System.out.println("------------------------------------------------------------------------------------");
             }
 
             showOrderSummery(sandwich);
 
-            if (numberOfSandwich > 1) {
+            if (numberOfSandwiches > 1) {
                 System.out.println("----------------------------------------------------------------------------------");
                 System.out.printf("                       Total for Order %d is $%.2f", i, sandwich.getPrice());
                 System.out.println("\n----------------------------------------------------------------------------------");
@@ -126,7 +148,7 @@ public class SandwichInterface {
             boolean wantsToSaveOrder = Console.PromptForYesNo("\nDo you want to save your order? ");
             String saveOrder = this.saveOrder.saveOrder(wantsToSaveOrder, sandwich, drink, chips);
             System.out.println("----------------------------------------------------------------------------------");
-            System.out.println("                     " + saveOrder);
+            System.out.println("                              " + saveOrder);
             System.out.println("----------------------------------------------------------------------------------");
 
         }
@@ -159,7 +181,7 @@ public class SandwichInterface {
                     System.out.println("\n-------------------------------------------------------------------------------------");
                     System.out.println("            Your input is invalid. Please enter a number between 1 and 4.");
                     System.out.println("-------------------------------------------------------------------------------------\n");
-                    System.out.println("Please select from the Options: ");
+                    System.out.println("Please select from the options: ");
                     toppingsOptions.breadTypes();
                 }
             }
@@ -208,7 +230,6 @@ public class SandwichInterface {
                     System.out.println("\n-------------------------------------------------------------------------------------");
                     System.out.println("            Your input is invalid. Please enter a number between 1 and 9.");
                     System.out.println("-------------------------------------------------------------------------------------\n");
-                    System.out.println("Please select from the options:");
                 }
             }
 
@@ -259,6 +280,7 @@ public class SandwichInterface {
     public ToppingSelection promptForMeatType(){
         List<String> meatToppings = new ArrayList<>();
         boolean wantMeat = Console.PromptForYesNo("Do you want Meat on your Sandwich?");
+        System.out.println();
         boolean extraMeat = false;
 
         if(wantMeat){
@@ -283,7 +305,6 @@ public class SandwichInterface {
                         System.out.println("\n-------------------------------------------------------------------------------------");
                         System.out.println("            Your input is invalid. Please enter a number between 1 and 6.");
                         System.out.println("-------------------------------------------------------------------------------------\n");
-                        System.out.println("Please choose from the options:");
                     }
                 }
 
@@ -348,8 +369,7 @@ public class SandwichInterface {
                     }catch(Exception e){
                         System.out.println("\n-------------------------------------------------------------------------------------");
                         System.out.println("            Your input is invalid. Please enter a number between 1 and 6.");
-                        System.out.println("-------------------------------------------------------------------------------------\n");
-                        System.out.println("Please choose from the options:");
+                        System.out.println("-------------------------------------------------------------------------------------");
                     }
                 }
 
@@ -376,13 +396,14 @@ public class SandwichInterface {
                 addMoreToppings = Console.PromptForYesNo("Do you want to add more cheese?");
             }while(addMoreToppings);
             extraCheese = Console.PromptForYesNo("Do you want extra Cheese?");
+            System.out.println();
         }
         return new ToppingSelection(new ArrayList<>(), cheeseToppings, false, extraCheese);
     }
 
     public ToppingSelection promptForSides(){
         List<String> sidesToppings = new ArrayList<>();
-        boolean wantsSides = Console.PromptForYesNo("\nDo you wants Sauce on the side?");
+        boolean wantsSides = Console.PromptForYesNo("Do you wants Sauce on the side?");
 
         if(wantsSides){
             List<String> availableSides;
@@ -406,8 +427,7 @@ public class SandwichInterface {
                     }catch(Exception e){
                         System.out.println("\n-------------------------------------------------------------------------------------");
                         System.out.println("            Your input is invalid. Please enter a number between 1 and 7.");
-                        System.out.println("-------------------------------------------------------------------------------------\n");
-                        System.out.println("Please choose from the options:");
+                        System.out.println("-------------------------------------------------------------------------------------");
                     }
                 }
 
@@ -495,12 +515,12 @@ public class SandwichInterface {
     }
 
     private void showOrderSummery(Sandwich sandwich) {
-        System.out.println("                            Sandwich size: " + sandwich.getSize() + " inches");
-        System.out.println("                            Bread Type: " + sandwich.getBreadType());
-        System.out.println("                            Bread Toasted: " + (sandwich.isToasted() ? "Yes" : "No"));
-        System.out.println("                            Regular toppings: " + formtToppings(sandwich.getRegularToppings()));
-        System.out.println("                            Meat toppings: " + formtToppings(sandwich.getMeatToppings()));
-        System.out.println("                            Cheese toppings: " + formtToppings(sandwich.getCheeseToppings()));
+        System.out.println("                       Sandwich size: " + sandwich.getSize() + " inches");
+        System.out.println("                       Bread Type: " + sandwich.getBreadType());
+        System.out.println("                       Bread Toasted: " + (sandwich.isToasted() ? "Yes" : "No"));
+        System.out.println("                       Regular toppings: " + formtToppings(sandwich.getRegularToppings()));
+        System.out.println("                       Meat toppings: " + formtToppings(sandwich.getMeatToppings()));
+        System.out.println("                       Cheese toppings: " + formtToppings(sandwich.getCheeseToppings()));
     }
 
     private String formtToppings(List<String> toppings){

@@ -21,7 +21,9 @@ public class UserInterface {
                         System.out.println();
                         break;
                     case 2:
-                        System.out.println("Exit");
+                        System.out.println("---------------------------------------------------");
+                        System.out.println("               Buy Come Again Soon!!!");
+                        System.out.println("---------------------------------------------------");
                         break;
                 }
             }catch(Exception e){

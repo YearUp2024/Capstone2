@@ -21,7 +21,7 @@ public class ChipsInterface {
 
             while(!validInput){
                 try{
-                    System.out.println("Which chips do you want?");
+                    System.out.println("\nWhich chips do you want?");
                     chipType = toppingsOptions.chipsOptions();
                     userOptions = Console.PromptForInt("Enter your choice: ");
 
@@ -32,8 +32,6 @@ public class ChipsInterface {
                     System.out.println("\n-------------------------------------------------------------------------------------");
                     System.out.println("            Your input is invalid. Please enter a number between 1 and 7.");
                     System.out.println("-------------------------------------------------------------------------------------\n");
-                    System.out.println("Please select from the Options: ");
-                    toppingsOptions.chipsOptions();
                 }
             }
 
@@ -91,8 +89,6 @@ public class ChipsInterface {
                     System.out.println("\n-------------------------------------------------------------------------------------");
                     System.out.println("            Your input is invalid. Please enter a number between 1 and 7.");
                     System.out.println("-------------------------------------------------------------------------------------\n");
-                    System.out.println("Please select from the Options: ");
-                    toppingsOptions.chipsOptions();
                 }
             }
 

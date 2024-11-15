@@ -84,11 +84,21 @@ public class OrderScreen {
                     System.out.println();
                     break;
                 case "checkout":
-                    checkout.printReceipt(order);
-                    System.out.println("Your order has been saved.");
+                    if(order.getSandwiches().isEmpty()){
+                        System.out.println("------------------------------------------------------------------");
+                        System.out.println("       You need to order a Sandwich first to get a receipt. ");
+                        System.out.println("------------------------------------------------------------------");
+                    }else{
+                        checkout.printReceipt(order);
+                        System.out.println("------------------------------------------------------------------");
+                        System.out.println("                   Your Receipt is created.");
+                        System.out.println("------------------------------------------------------------------");
+                    }
                     break;
                 case "cancel order":
-                    System.out.println("Your order is canceled.");
+                    System.out.println("---------------------------------------------------");
+                    System.out.println("            Your order is canceled.");
+                    System.out.println("---------------------------------------------------");
                     break;
                 default:
                     System.out.println("Your choice is incorrect.");

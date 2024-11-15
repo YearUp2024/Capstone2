@@ -25,7 +25,7 @@ public class DrinksInterface {
 
             while(!validInput){
                 try{
-                    System.out.println("Which drink do you want?");
+                    System.out.println("\nWhich drink do you want?");
                     drinkType = toppingsOptions.drinksOptions();
                     userOption = Console.PromptForInt("Enter your choice: ");
 
@@ -38,8 +38,6 @@ public class DrinksInterface {
                     System.out.println("\n-------------------------------------------------------------------------------------");
                     System.out.println("            Your input is invalid. Please enter a number between 1 and 7.");
                     System.out.println("-------------------------------------------------------------------------------------\n");
-                    System.out.println("Please select from the Options: ");
-                    toppingsOptions.drinksOptions();
                 }
             }
 
@@ -76,7 +74,7 @@ public class DrinksInterface {
             }else if(size == 3){
                 price = large;
             }
-            addMoreDrinks = Console.PromptForYesNo("\nDo you want to add more Drinks?");
+            addMoreDrinks = Console.PromptForYesNo("Do you want to add more Drinks?");
         }while(addMoreDrinks);
         return new Drink(drinkName, size, price);
     }
@@ -100,6 +98,7 @@ public class DrinksInterface {
                     userOption = Console.PromptForInt("Enter your choice: ");
 
                     size = Console.PromptForInt("What size do you want? (1: Small, 2: Medium, 3: Large) ");
+                    System.out.println();
 
                     if(userOption >= 1 && userOption <= drinkType.size()){
                         validInput = true;
