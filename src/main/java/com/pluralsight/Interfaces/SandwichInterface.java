@@ -140,7 +140,7 @@ public class SandwichInterface {
                 System.out.println("------------------------------------------------------------------------------------");
             }
 
-            showOrderSummery(sandwich);
+            showOrderSummery(sandwich, drink, chips);
 
             if (numberOfSandwiches > 1) {
                 System.out.println("----------------------------------------------------------------------------------");
@@ -375,7 +375,7 @@ public class SandwichInterface {
 
                 while(!validInput){
                     try{
-                        System.out.println("\nPlease choose from the Cheese options");
+                        System.out.println("Please choose from the Cheese options:");
                         availableCheese = toppingsOptions.cheeseTypes();
                         userOptions = Console.PromptForInt("Enter your choice: ");
 
@@ -384,12 +384,12 @@ public class SandwichInterface {
                         }else{
                             System.out.println("\n--------------------------------------------------------------");
                             System.out.println("                " + userOptions + " is not a valid input.");
-                            System.out.println("--------------------------------------------------------------");
+                            System.out.println("--------------------------------------------------------------\n");
                         }
                     }catch(Exception e){
                         System.out.println("\n-------------------------------------------------------------------------------------");
                         System.out.println("            Your input is invalid. Please enter a number between 1 and 6.");
-                        System.out.println("-------------------------------------------------------------------------------------");
+                        System.out.println("-------------------------------------------------------------------------------------\n");
                     }
                 }
 
@@ -538,13 +538,19 @@ public class SandwichInterface {
         return totalCost;
     }
 
-    private void showOrderSummery(Sandwich sandwich) {
+    private void showOrderSummery(Sandwich sandwich, Drink drink, Chips chips) {
         System.out.println("                       Sandwich size: " + sandwich.getSize() + " inches");
         System.out.println("                       Bread Type: " + sandwich.getBreadType());
         System.out.println("                       Bread Toasted: " + (sandwich.isToasted() ? "Yes" : "No"));
         System.out.println("                       Regular toppings: " + formtToppings(sandwich.getRegularToppings()));
         System.out.println("                       Meat toppings: " + formtToppings(sandwich.getMeatToppings()));
-        System.out.println("                       Cheese toppings: " + formtToppings(sandwich.getCheeseToppings()));
+        if (drink != null) {
+            System.out.println("                       Drink: " + drink.getName());
+            System.out.println("                       Drink size: " + (drink.getSize() == 1 ? "small" : drink.getSize() == 2 ? "medium" : "large"));
+        }
+        if(chips != null){
+            System.out.println("                       Chips: " + chips.getName());
+        }
     }
 
     private String formtToppings(List<String> toppings){
