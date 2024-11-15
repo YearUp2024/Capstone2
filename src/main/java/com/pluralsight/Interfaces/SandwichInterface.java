@@ -64,6 +64,7 @@ public class SandwichInterface {
         int numberOfSandwiches = 0;
         boolean isValidInput = false;
 
+        //This is make sure that the users enters a valid input. If they don't they will be prompted over and over again for a valid input.
         do {
             try {
                 numberOfSandwiches = Console.PromptForInt("How many sandwiches do you want? ");
@@ -85,35 +86,42 @@ public class SandwichInterface {
         double totalOrderCost = 0.0;
         List<Sandwich> sandwiches = new ArrayList<>();
 
+        //This for loop is going to run for the number of Sandwiches the user want's to order.
         for (int i = 1; i <= numberOfSandwiches; i++) {
             int sandwichSize = promptForSandwichSize();
             System.out.println();
 
+            //breadType is calling promptForBreadType() method that allow the users to choose a type of bread.
             String breadType = promptForBreadType();
             boolean toasted = Console.PromptForYesNo("Do you want your bread to be toasted:");
-
             System.out.println();
 
+            //This is getting the users choice from a Regular toppings.
             ToppingSelection regularToppingsSelection = promptForRegularToppings();
             List<String> regularToppings = regularToppingsSelection.getRegularToppings();
             System.out.println();
 
+            //This is getting the users choice from Meat types.
             ToppingSelection meatSelection = promptForMeatType();
             List<String> meatToppings = meatSelection.getPremiumToppings();
             boolean extraMeat = meatSelection.isExtraMeat();
             System.out.println();
 
+            //This is getting the users choice from Cheese types.
             ToppingSelection cheeseSelection = promptForCheeseType();
             List<String> cheeseToppings = cheeseSelection.getPremiumToppings();
             boolean extraCheese = cheeseSelection.isExtraCheese();
 
+            //This is getting the users choice from Sides.
             ToppingSelection sidesToppingsSelection = promptForSides();
             List<String> sidesToppings = sidesToppingsSelection.getRegularToppings();
             regularToppings.addAll(sidesToppings);
             System.out.println();
 
+            //sandwichCost is calling calculateCost method that is calculating the cost of the sandwich.
             double sandwichCost = calculateCost(sandwichSize, meatToppings, cheeseToppings, extraMeat, extraCheese);
 
+            //This asks the users if they want to add a Drinks if they say yes then it calls the DrinksInterface.
             boolean wantToAddDrink = Console.PromptForYesNo("Do you want to add a drink to your order?");
             Drink drink = null;
             double drinkCost = 0.0;
@@ -122,8 +130,9 @@ public class SandwichInterface {
                 drink = drinksInterface.orderDrinks();
                 drinkCost = drink.getPrice();
             }
-
             System.out.println();
+
+            //This asks the users if they want to add a Chips if they say yes then it calls the ChipsInterface.
             boolean wantToAddChips = Console.PromptForYesNo("Do you want to add chips to your order?");
             Chips chips = null;
             double chipCost = 0.0;
@@ -133,6 +142,7 @@ public class SandwichInterface {
                 chipCost = chips.getPrice();
             }
 
+            //This is calculating the totalCost of Sandwich + Drink + Chips.
             double totalCost = sandwichCost + drinkCost + chipCost;
             totalOrderCost += totalCost;
 
@@ -159,6 +169,7 @@ public class SandwichInterface {
 
             boolean wantsToSaveOrder = Console.PromptForYesNo("\nDo you want to save your order?");
             System.out.println();
+
             String saveOrder = this.saveOrder.saveOrder(wantsToSaveOrder, sandwich, drink, chips);
             System.out.println("----------------------------------------------------------------------------------");
             System.out.println("                              " + saveOrder);
