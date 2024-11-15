@@ -9,6 +9,10 @@ import java.util.List;
 public class ChipsInterface {
     ToppingsOptions toppingsOptions = new ToppingsOptions();
 
+    /**
+     * This method is related to Sandwich Method. This method allows the users to Order and Chips when they are ordering a Sandwich.
+     * @return
+     */
     public Chips orderChips(){
         List<String> chipType;
         String name = "";
@@ -69,6 +73,10 @@ public class ChipsInterface {
         return new Chips(name, price);
     }
 
+    /**
+     * This method allows the users to only a Chips without buying Sandwich.
+     * @return
+     */
     public Chips buyChipsOnly(){
         List<String> chipType;
         String name = "";

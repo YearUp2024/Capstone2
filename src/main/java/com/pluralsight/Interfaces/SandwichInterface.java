@@ -29,6 +29,11 @@ public class SandwichInterface {
     ToppingsOptions toppingsOptions = new ToppingsOptions();
     SaveOrder saveOrder = new SaveOrder();
 
+    /**
+     * This method is getting the Sandwich size. The users are given 3 sizes (4 inch, 8 inch, 12 inch),
+     * and the users are able to choose a size form that.
+     * @return
+     */
     private int promptForSandwichSize() {
         int sandwichSize = 0;
         do{
@@ -51,6 +56,10 @@ public class SandwichInterface {
         return sandwichSize;
     }
 
+    /**
+     * This is the main method. This method is calling all the other methods and putting them in one place.
+     * @return
+     */
     public List<Sandwich> orderSandwich() {
         int numberOfSandwiches = 0;
         boolean isValidInput = false;
@@ -154,7 +163,6 @@ public class SandwichInterface {
             System.out.println("----------------------------------------------------------------------------------");
             System.out.println("                              " + saveOrder);
             System.out.println("----------------------------------------------------------------------------------");
-
         }
         System.out.println("----------------------------------------------------------------------------------");
         System.out.println("                       Your Total for the Order is $" + totalOrderCost);
@@ -163,6 +171,10 @@ public class SandwichInterface {
         return sandwiches;
     }
 
+    /**
+     * This method is getting the Bread Type. This method displays list of Bread Types and the users are able to choose from that.
+     * @return
+     */
     public String promptForBreadType(){
         System.out.println("What type of bread do you want?");
         List<String> breadType = toppingsOptions.breadTypes();
@@ -214,6 +226,11 @@ public class SandwichInterface {
         return userChoice;
     }
 
+    /**
+     * This method is getting the Regular toppings. This method displays list of Regular toppings and the users are able to choose
+     * from those options.
+     * @return
+     */
     public ToppingSelection promptForRegularToppings(){
         List<String> normalToppings;
         List<String> selectedToppings = new ArrayList<>();
@@ -288,6 +305,11 @@ public class SandwichInterface {
         return new ToppingSelection(selectedToppings, new ArrayList<>(), false, false);
     }
 
+    /**
+     * This method is getting the Meat toppings. This method displays list of Meat toppings and the users are able to choose
+     * from the options.
+     * @return
+     */
     public ToppingSelection promptForMeatType(){
         List<String> meatToppings = new ArrayList<>();
         boolean wantMeat = Console.PromptForYesNo("Do you want Meat on your Sandwich?");
@@ -358,6 +380,11 @@ public class SandwichInterface {
         return new ToppingSelection(new ArrayList<>(), meatToppings, extraMeat, false);
     }
 
+    /**
+     * This method is getting the Cheese toppings. This method displays list of Cheese toppings and the users are able to choose
+     * from the options.
+     * @return
+     */
     public ToppingSelection promptForCheeseType(){
         List<String> cheeseToppings = new ArrayList<>();
         boolean wantCheese = Console.PromptForYesNo("Do you want Cheese on your Sandwich?");
@@ -420,6 +447,11 @@ public class SandwichInterface {
         return new ToppingSelection(new ArrayList<>(), cheeseToppings, false, extraCheese);
     }
 
+    /**
+     * This method is getting the Sides. This method displays list of Sides options and the users are able to choose
+     * from the options.
+     * @return
+     */
     public ToppingSelection promptForSides(){
         List<String> sidesToppings = new ArrayList<>();
         System.out.println();
@@ -493,6 +525,15 @@ public class SandwichInterface {
         return new ToppingSelection(sidesToppings, new ArrayList<>(), false, false);
     }
 
+    /**
+     * This method is calculating the cost of the Sandwich including anything else they added (drinks, chips).
+     * @param sandwichSize
+     * @param meatToppings
+     * @param cheeseToppings
+     * @param extraMeat
+     * @param extraCheese
+     * @return
+     */
     public double calculateCost(int sandwichSize, List<String> meatToppings, List<String> cheeseToppings, boolean extraMeat, boolean extraCheese){
         double baseCost = 0;
         double meatCost = 0;
@@ -538,12 +579,18 @@ public class SandwichInterface {
         return totalCost;
     }
 
+    /**
+     * This method is springing out what the user has chosen.
+     * @param sandwich
+     * @param drink
+     * @param chips
+     */
     private void showOrderSummery(Sandwich sandwich, Drink drink, Chips chips) {
         System.out.println("                       Sandwich size: " + sandwich.getSize() + " inches");
         System.out.println("                       Bread Type: " + sandwich.getBreadType());
         System.out.println("                       Bread Toasted: " + (sandwich.isToasted() ? "Yes" : "No"));
-        System.out.println("                       Regular toppings: " + formtToppings(sandwich.getRegularToppings()));
-        System.out.println("                       Meat toppings: " + formtToppings(sandwich.getMeatToppings()));
+        System.out.println("                       Regular toppings: " + formatToppings(sandwich.getRegularToppings()));
+        System.out.println("                       Meat toppings: " + formatToppings(sandwich.getMeatToppings()));
         if (drink != null) {
             System.out.println("                       Drink: " + drink.getName());
             System.out.println("                       Drink size: " + (drink.getSize() == 1 ? "small" : drink.getSize() == 2 ? "medium" : "large"));
@@ -553,7 +600,9 @@ public class SandwichInterface {
         }
     }
 
-    private String formtToppings(List<String> toppings){
+    /*This method is formatting how Meat and Cheese toppings are displayed.
+     */
+    private String formatToppings(List<String> toppings){
         if(toppings.isEmpty()){
             return "None";
         }

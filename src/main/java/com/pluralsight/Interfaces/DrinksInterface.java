@@ -12,6 +12,10 @@ public class DrinksInterface {
 
     ToppingsOptions toppingsOptions = new ToppingsOptions();
 
+    /**
+     * This method is related to Sandwich Method. This method allows the users to Order and Drink when they are ordering a Sandwich.
+     * @return
+     */
     public Drink orderDrinks(){
         List<String> drinkType = null;
         int size = 0;
@@ -110,6 +114,10 @@ public class DrinksInterface {
         return new Drink(drinkName, size, price);
     }
 
+    /**
+     * This method allows the users to only a Drink without buying Sandwich.
+     * @return
+     */
     public Drink buyDrinkOnly(){
         List<String> drinkType;
         int size = 0;

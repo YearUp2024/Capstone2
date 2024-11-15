@@ -5,6 +5,10 @@ import com.pluralsight.HomeScreen.OrderScreen;
 
 public class UserInterface {
     OrderScreen orderScreen = new OrderScreen();
+
+    /**
+     * This displays all the choices the users have.
+     */
     public void userChoice(){
         int choice = 0;
         do{
