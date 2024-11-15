@@ -4,4 +4,3 @@ James|4|white|No|lettuce|None|None|5.5|
 Iftekar|4|white|No|lettuce|None|None|5.5|
 Iftekar|4|white|No|lettuce|None|None|5.5|
 James|4|white|Yes|lettuce, mayo|steak|american|10.75|pepsi|1|2.0|doritos|1.5
-akjdh|4|white|No|lettuce|None|None|9.0|pepsi|1|2.0|doritos|1.5
