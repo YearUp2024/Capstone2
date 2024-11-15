@@ -21,17 +21,21 @@ public class ChipsInterface {
 
             while(!validInput){
                 try{
-                    System.out.println("\nWhich chips do you want?");
+                    System.out.println("\nPlease choose from the Chips options:");
                     chipType = toppingsOptions.chipsOptions();
                     userOptions = Console.PromptForInt("Enter your choice: ");
 
                     if(userOptions >= 1 && userOptions <= chipType.size()){
                         validInput = true;
+                    }else{
+                        System.out.println("\n-------------------------------------------------------------------------------------");
+                        System.out.println("            Your input is invalid. Please enter a number between 1 and 7.");
+                        System.out.println("-------------------------------------------------------------------------------------");
                     }
                 }catch(Exception e){
                     System.out.println("\n-------------------------------------------------------------------------------------");
                     System.out.println("            Your input is invalid. Please enter a number between 1 and 7.");
-                    System.out.println("-------------------------------------------------------------------------------------\n");
+                    System.out.println("-------------------------------------------------------------------------------------");
                 }
             }
 
@@ -84,6 +88,10 @@ public class ChipsInterface {
 
                     if(userOption >= 1 && userOption <= chipType.size()){
                         validInput = true;
+                    }else{
+                        System.out.println("\n--------------------------------------------------------------");
+                        System.out.println("                " + userOption + " is not a valid input.");
+                        System.out.println("--------------------------------------------------------------\n");
                     }
                 }catch(Exception e){
                     System.out.println("\n-------------------------------------------------------------------------------------");

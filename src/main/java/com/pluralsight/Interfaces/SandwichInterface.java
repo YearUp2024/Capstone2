@@ -62,7 +62,9 @@ public class SandwichInterface {
                 if (numberOfSandwiches >= 1) {
                     isValidInput = true;
                 } else {
-                    System.out.println("Please enter a valid number greater than zero.");
+                    System.out.println("\n---------------------------------------------------------------------");
+                    System.out.println("         Please enter a valid number greater than zero.");
+                    System.out.println("---------------------------------------------------------------------\n");
                 }
             } catch (Exception e) {
                 System.out.println("\n-----------------------------------------------------------");
@@ -112,6 +114,7 @@ public class SandwichInterface {
                 drinkCost = drink.getPrice();
             }
 
+            System.out.println();
             boolean wantToAddChips = Console.PromptForYesNo("Do you want to add chips to your order?");
             Chips chips = null;
             double chipCost = 0.0;
@@ -133,7 +136,7 @@ public class SandwichInterface {
                 System.out.println("------------------------------------------------------------------------------------");
             } else {
                 System.out.println("\n------------------------------------------------------------------------------------");
-                System.out.println("                               Your Order:                                  ");
+                System.out.println("                        Your Order:                                  ");
                 System.out.println("------------------------------------------------------------------------------------");
             }
 
@@ -145,7 +148,8 @@ public class SandwichInterface {
                 System.out.println("\n----------------------------------------------------------------------------------");
             }
 
-            boolean wantsToSaveOrder = Console.PromptForYesNo("\nDo you want to save your order? ");
+            boolean wantsToSaveOrder = Console.PromptForYesNo("\nDo you want to save your order?");
+            System.out.println();
             String saveOrder = this.saveOrder.saveOrder(wantsToSaveOrder, sandwich, drink, chips);
             System.out.println("----------------------------------------------------------------------------------");
             System.out.println("                              " + saveOrder);
@@ -174,7 +178,10 @@ public class SandwichInterface {
                     if(userOption >= 1 && userOption <= 4){
                         validInput = true;
                     }else{
-                        System.out.println("\nPlease select from the options: ");
+                        System.out.println("\n--------------------------------------------------------------");
+                        System.out.println("                " + userOption + " is not a valid input.");
+                        System.out.println("--------------------------------------------------------------\n");
+                        System.out.println("Please select from the options: ");
                         toppingsOptions.breadTypes();
                     }
                 }catch(Exception e){
@@ -219,12 +226,16 @@ public class SandwichInterface {
 
             while(!validInput){
                 try{
-                    System.out.println("Which toppings do you want?");
+                    System.out.println("Please select from the Regular options:");
                     normalToppings = toppingsOptions.regularToppingsType();
                     userOption = Console.PromptForInt("Enter your choice: ");
 
                     if(userOption >= 1 && userOption <= normalToppings.size()){
                         validInput = true;
+                    }else{
+                        System.out.println("\n--------------------------------------------------------------");
+                        System.out.println("                " + userOption + " is not a valid input.");
+                        System.out.println("--------------------------------------------------------------\n");
                     }
                 }catch(Exception e){
                     System.out.println("\n-------------------------------------------------------------------------------------");
@@ -294,12 +305,16 @@ public class SandwichInterface {
 
                 while(!validInput){
                     try{
-                        System.out.println("Which Meat do you want?");
+                        System.out.println("Please choose from Meat options:");
                         availableMeat = toppingsOptions.meatTypes();
                         userOptions = Console.PromptForInt("Enter your choice: ");
 
                         if(userOptions >= 1 && userOptions <= availableMeat.size()){
                             validInput = true;
+                        }else{
+                            System.out.println("\n--------------------------------------------------------------");
+                            System.out.println("                " + userOptions + " is not a valid input.");
+                            System.out.println("--------------------------------------------------------------\n");
                         }
                     }catch(Exception e){
                         System.out.println("\n-------------------------------------------------------------------------------------");
@@ -347,6 +362,7 @@ public class SandwichInterface {
         List<String> cheeseToppings = new ArrayList<>();
         boolean wantCheese = Console.PromptForYesNo("Do you want Cheese on your Sandwich?");
         boolean extraCheese = false;
+        System.out.println();
 
         if(wantCheese){
             List<String> availableCheese;
@@ -359,12 +375,16 @@ public class SandwichInterface {
 
                 while(!validInput){
                     try{
-                        System.out.println("\nWhich Cheese do you want?");
+                        System.out.println("\nPlease choose from the Cheese options");
                         availableCheese = toppingsOptions.cheeseTypes();
                         userOptions = Console.PromptForInt("Enter your choice: ");
 
                         if(userOptions >= 1 && userOptions <= availableCheese.size()){
                             validInput = true;
+                        }else{
+                            System.out.println("\n--------------------------------------------------------------");
+                            System.out.println("                " + userOptions + " is not a valid input.");
+                            System.out.println("--------------------------------------------------------------");
                         }
                     }catch(Exception e){
                         System.out.println("\n-------------------------------------------------------------------------------------");
@@ -396,14 +416,14 @@ public class SandwichInterface {
                 addMoreToppings = Console.PromptForYesNo("Do you want to add more cheese?");
             }while(addMoreToppings);
             extraCheese = Console.PromptForYesNo("Do you want extra Cheese?");
-            System.out.println();
         }
         return new ToppingSelection(new ArrayList<>(), cheeseToppings, false, extraCheese);
     }
 
     public ToppingSelection promptForSides(){
         List<String> sidesToppings = new ArrayList<>();
-        boolean wantsSides = Console.PromptForYesNo("Do you wants Sauce on the side?");
+        System.out.println();
+        boolean wantsSides = Console.PromptForYesNo("Do you want Sauce on the side?");
 
         if(wantsSides){
             List<String> availableSides;
@@ -417,12 +437,16 @@ public class SandwichInterface {
 
                 while(!validInput){
                     try{
-                        System.out.println("\nWhich sauce do you want on the side?");
+                        System.out.println("\nPlease choose from the Sides options:");
                         availableSides = toppingsOptions.regularSideTopping();
                         userOptions = Console.PromptForInt("Enter your choice: ");
 
                         if(userOptions >= 1 && userOptions <= availableSides.size()){
                             validInput = true;
+                        }else{
+                            System.out.println("\n--------------------------------------------------------------");
+                            System.out.println("                " + userOptions + " is not a valid input.");
+                            System.out.println("--------------------------------------------------------------");
                         }
                     }catch(Exception e){
                         System.out.println("\n-------------------------------------------------------------------------------------");

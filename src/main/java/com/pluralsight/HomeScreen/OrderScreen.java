@@ -35,6 +35,10 @@ public class OrderScreen {
 
                     if (userChoice >= 1 && userChoice <= 5) {
                         validInput = true;
+                    }else{
+                        System.out.println("\n--------------------------------------------------------------");
+                        System.out.println("                " + userChoice + " is not a valid input.");
+                        System.out.println("--------------------------------------------------------------\n");
                     }
                 } catch (Exception e) {
                     System.out.println("\n-------------------------------------------------------------------------------------");
